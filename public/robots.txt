@@ -31,7 +31,8 @@ Disallow: /mark.png
 # ADDITIONAL PROTECTION
 # ============================================
 
+
 Allow: /resume.pdf
 
-# Sitemap location (if you have one)
-# Sitemap: https://dinesh-bajgain.com.np/sitemap.xml
+# Sitemap location
+Sitemap: https://dinesh-bajgain.com.np/sitemap.xml
