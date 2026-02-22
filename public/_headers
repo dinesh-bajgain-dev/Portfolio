@@ -15,36 +15,42 @@
   Cache-Control: public, max-age=31536000, immutable
   X-Copyright: Copyright © 2026 Dinesh Bajgain. All rights reserved.
   X-Author: Dinesh Bajgain
+  X-Robots-Tag: all, max-image-preview:large
   Content-Disposition: inline
 
 /*.jpg
   Cache-Control: public, max-age=31536000, immutable
   X-Copyright: Copyright © 2026 Dinesh Bajgain. All rights reserved.
   X-Author: Dinesh Bajgain
+  X-Robots-Tag: all, max-image-preview:large
   Content-Disposition: inline
 
 /*.jpeg
   Cache-Control: public, max-age=31536000, immutable
   X-Copyright: Copyright © 2026 Dinesh Bajgain. All rights reserved.
   X-Author: Dinesh Bajgain
+  X-Robots-Tag: all, max-image-preview:large
   Content-Disposition: inline
 
 /*.gif
   Cache-Control: public, max-age=31536000, immutable
   X-Copyright: Copyright © 2026 Dinesh Bajgain. All rights reserved.
   X-Author: Dinesh Bajgain
+  X-Robots-Tag: all, max-image-preview:large
   Content-Disposition: inline
 
 /*.svg
   Cache-Control: public, max-age=31536000, immutable
   X-Copyright: Copyright © 2026 Dinesh Bajgain. All rights reserved.
   X-Author: Dinesh Bajgain
+  X-Robots-Tag: all, max-image-preview:large
   Content-Disposition: inline
 
 /*.webp
   Cache-Control: public, max-age=31536000, immutable
   X-Copyright: Copyright © 2026 Dinesh Bajgain. All rights reserved.
   X-Author: Dinesh Bajgain
+  X-Robots-Tag: all, max-image-preview:large
   Content-Disposition: inline
 
 /*.woff
