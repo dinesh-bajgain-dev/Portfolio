@@ -1,38 +1,47 @@
-# robots.txt - Image Protection Strategy
-# This file controls which images search engines can index
+# robots.txt - Dinesh Bajgain Portfolio
+# Optimized for maximum image discoverability in search engines
 
-# Allow all crawlers by default
+# Allow all crawlers full access
 User-agent: *
-
-# Allow general site crawling
 Allow: /
-
-# ============================================
-# SELECTIVE IMAGE INDEXING
-# ============================================
-
-# Allow indexing of important portfolio images (good for SEO)
-Allow: /profile.jpeg
-Allow: /og-image.png
-Allow: /icons/
-Allow: /portrait.png
-
-# Disallow indexing of personal/high-resolution images
-# These won't appear in Google Image Search
+Disallow: /api/
+Disallow: /_next/
+Disallow: /private/
+Disallow: /scripts/
 Disallow: /mark.png
 
-# Optional: Disallow specific image types from being indexed
-# Uncomment the lines below if you want to block certain file types
-# Disallow: /*.png$
-# Disallow: /*.jpg$
-# Disallow: /*.jpeg$
+# Googlebot - full access, no delay
+User-agent: Googlebot
+Allow: /
 
-# ============================================
-# ADDITIONAL PROTECTION
-# ============================================
+# Googlebot-Image - allow all images except mark.png
+User-agent: Googlebot-Image
+Allow: /
+Disallow: /mark.png
 
+# Bingbot
+User-agent: Bingbot
+Allow: /
 
-Allow: /resume.pdf
+# Social media bots - full access for rich previews
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+# Block AI training bots
+User-agent: GPTBot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
 
 # Sitemap location
-Sitemap: https://dinesh-bajgain.com.np/sitemap.xml
+Sitemap: https://www.dinesh-bajgain.com.np/sitemap.xml
