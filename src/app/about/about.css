@@ -184,8 +184,3 @@ body {
     padding: 0 0.5rem;
   }
 }
-.hidden-photo{
-  height: 50px;
-  width: 50px;
-  opacity: 0;
-}
