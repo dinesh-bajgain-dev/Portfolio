@@ -1,11 +1,11 @@
 import { Metadata } from "next";
+import Image from "next/image";
 import about from "../../data/about.json";
 import seoMetadata from "@/data/seometadata.json";
-import { MapPin, Heart } from "lucide-react";
+import { MapPin } from "lucide-react";
 
 import { JsonLd, generateAboutPageSchema } from "@/components/seo/JsonLd";
 import "./about.css";
-import { url } from "inspector";
 
 export const metadata: Metadata = {
   title: seoMetadata.pages.about.title,
@@ -62,7 +62,14 @@ export default function AboutPage() {
       <section className="about-section story-section">
         <div className="section-container">
           <div className="section-header">
-            <Heart className="section-icon" size={24} />
+            <Image
+              src="/profile.jpeg"
+              alt="Dinesh Bajgain - Full Stack Developer and AI/ML Enthusiast from Nepal"
+              width={28}
+              height={28}
+              className="section-icon-photo"
+              title="Dinesh Bajgain"
+            />
             <h1 className="section-title">My Story</h1>
           </div>
           <div className="story-content">
