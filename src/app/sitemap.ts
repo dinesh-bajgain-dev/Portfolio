@@ -10,6 +10,28 @@ type Project = {
   tags?: string[];
 };
 
+// Important images that should be indexed by search engines
+const SITE_IMAGES = {
+  portrait: {
+    loc: "/portrait.png",
+    title: "Dinesh Bajgain - Full Stack Developer & AI/ML Enthusiast Portrait",
+    caption:
+      "Professional portrait of Dinesh Bajgain, Full Stack Developer and AI/ML Enthusiast from Lalitpur, Nepal",
+  },
+  ogImage: {
+    loc: "/og-image.png",
+    title: "Dinesh Bajgain Portfolio - Full Stack Developer & AI/ML",
+    caption:
+      "Open Graph image for Dinesh Bajgain's developer portfolio website",
+  },
+  profile: {
+    loc: "/profile.jpeg",
+    title: "Dinesh Bajgain Profile Photo",
+    caption:
+      "Profile photo of Dinesh Bajgain, Software Engineer specializing in React, Next.js, Node.js, Python, and Machine Learning",
+  },
+};
+
 // Page priority configuration - add new pages here to customize their priority
 const PAGE_PRIORITIES: Record<
   string,
@@ -54,7 +76,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = seoMetadata.siteUrl;
   const currentDate = new Date().toISOString();
 
-  // Home page (always included)
+  // All important images for sitemap image entries
+  const allImages = Object.values(SITE_IMAGES).map((img) => ({
+    url: `${baseUrl}${img.loc}`,
+    title: img.title,
+    caption: img.caption,
+  }));
+
+  // Home page with all images
   const homePage: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
@@ -64,19 +93,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  // Dynamic pages from navigation - automatically includes new pages
+  // Dynamic pages from navigation with images
   const navPages: MetadataRoute.Sitemap = NAV_ITEMS.filter(
     (item) => !item.external && !item.disabled,
-  ) // Exclude external links and disabled pages
-    .map((item) => {
-      const config = PAGE_PRIORITIES[item.href] || DEFAULT_PAGE_CONFIG;
-      return {
-        url: `${baseUrl}${item.href}`,
-        lastModified: currentDate,
-        changeFrequency: config.changeFrequency,
-        priority: config.priority,
-      };
-    });
+  ).map((item) => {
+    const config = PAGE_PRIORITIES[item.href] || DEFAULT_PAGE_CONFIG;
+    return {
+      url: `${baseUrl}${item.href}`,
+      lastModified: currentDate,
+      changeFrequency: config.changeFrequency,
+      priority: config.priority,
+    };
+  });
 
   // Dynamic project pages with individual priorities
   const projects = projectsData as Project[];
