@@ -36,14 +36,14 @@
   Cache-Control: public, max-age=31536000, immutable
   X-Copyright: Copyright © 2026 Dinesh Bajgain. All rights reserved.
   X-Author: Dinesh Bajgain
-  X-Robots-Tag: all, max-image-preview:large
+  X-Robots-Tag: noindex, noimageindex
   Content-Disposition: inline
 
 /*.svg
   Cache-Control: public, max-age=31536000, immutable
   X-Copyright: Copyright © 2026 Dinesh Bajgain. All rights reserved.
   X-Author: Dinesh Bajgain
-  X-Robots-Tag: all, max-image-preview:large
+  X-Robots-Tag: noindex, noimageindex
   Content-Disposition: inline
 
 /*.webp
