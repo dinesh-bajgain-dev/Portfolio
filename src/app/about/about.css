@@ -127,6 +127,16 @@ body {
   flex-shrink: 0;
 }
 
+.section-icon-photo {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  flex-shrink: 0;
+  border: 1.5px solid var(--muted);
+}
+
 .section-title {
   font-size: clamp(1.5rem, 4vw, 1.75rem);
   margin: 0;
