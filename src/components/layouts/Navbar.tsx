@@ -73,10 +73,10 @@ const Navbar = ({
                 item.disabled
                   ? undefined
                   : () => {
-                    if (onNavClick) onNavClick(item.id);
-                    setIsOpen(false); // Close menu on click
-                    if (onMenuToggle) onMenuToggle(false);
-                  }
+                      if (onNavClick) onNavClick(item.id);
+                      setIsOpen(false); // Close menu on click
+                      if (onMenuToggle) onMenuToggle(false);
+                    }
               }
               className="nav-link"
             >
@@ -108,7 +108,10 @@ const Navbar = ({
   // Render Horizontal / Top Navbar
   if (orientation === "horizontal") {
     return (
-      <nav ref={navRef} className={`site-top-navbar ${className}`}>
+      <nav
+        ref={navRef}
+        className={`site-top-navbar ${className} ${isOpen ? "mobile-menu-open" : ""}`}
+      >
         <div className="site-navbar-inner">
           <div className="site-navbar-logo">
             <div
