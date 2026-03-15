@@ -1,7 +1,6 @@
 import { MetadataRoute } from "next";
 import projectsData from "@/data/projects.json";
 import seoMetadata from "@/data/seometadata.json";
-import { NAV_ITEMS } from "@/data/navigation";
 
 type Project = {
   slug: string;
@@ -66,45 +65,29 @@ const PAGE_PRIORITIES: Record<
   },
 };
 
-// Default values for pages not in the config
-const DEFAULT_PAGE_CONFIG = {
-  priority: 0.7,
-  changeFrequency: "monthly" as const,
-};
-
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = seoMetadata.siteUrl;
   const currentDate = new Date().toISOString();
 
-  // All important images for sitemap image entries
-  const allImages = Object.values(SITE_IMAGES).map((img) => ({
-    url: `${baseUrl}${img.loc}`,
-    title: img.title,
-    caption: img.caption,
+  // Include canonical route URLs only (avoid fragment URLs like #about)
+  const staticPages: MetadataRoute.Sitemap = Object.entries(
+    PAGE_PRIORITIES,
+  ).map(([path, config]) => ({
+    url: path === "/" ? baseUrl : `${baseUrl}${path}`,
+    lastModified: currentDate,
+    changeFrequency: config.changeFrequency,
+    priority: config.priority,
   }));
 
-  // Home page with all images
-  const homePage: MetadataRoute.Sitemap = [
-    {
-      url: baseUrl,
+  // Explicitly include critical images so crawlers can discover them quickly
+  const imagePages: MetadataRoute.Sitemap = Object.values(SITE_IMAGES).map(
+    (img) => ({
+      url: `${baseUrl}${img.loc}`,
       lastModified: currentDate,
-      changeFrequency: PAGE_PRIORITIES["/"].changeFrequency,
-      priority: PAGE_PRIORITIES["/"].priority,
-    },
-  ];
-
-  // Dynamic pages from navigation with images
-  const navPages: MetadataRoute.Sitemap = NAV_ITEMS.filter(
-    (item) => !item.external && !item.disabled,
-  ).map((item) => {
-    const config = PAGE_PRIORITIES[item.href] || DEFAULT_PAGE_CONFIG;
-    return {
-      url: `${baseUrl}${item.href}`,
-      lastModified: currentDate,
-      changeFrequency: config.changeFrequency,
-      priority: config.priority,
-    };
-  });
+      changeFrequency: "yearly",
+      priority: 0.6,
+    }),
+  );
 
   // Dynamic project pages with individual priorities
   const projects = projectsData as Project[];
@@ -118,5 +101,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }),
   );
 
-  return [...homePage, ...navPages, ...projectPages];
+  return [...staticPages, ...projectPages, ...imagePages];
 }
