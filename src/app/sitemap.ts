@@ -9,28 +9,6 @@ type Project = {
   tags?: string[];
 };
 
-// Important images that should be indexed by search engines
-const SITE_IMAGES = {
-  portrait: {
-    loc: "/portrait.png",
-    title: "Dinesh Bajgain - Full Stack Developer & AI/ML Enthusiast Portrait",
-    caption:
-      "Professional portrait of Dinesh Bajgain, Full Stack Developer and AI/ML Enthusiast from Lalitpur, Nepal",
-  },
-  ogImage: {
-    loc: "/og-image.png",
-    title: "Dinesh Bajgain Portfolio - Full Stack Developer & AI/ML",
-    caption:
-      "Open Graph image for Dinesh Bajgain's developer portfolio website",
-  },
-  profile: {
-    loc: "/profile.jpeg",
-    title: "Dinesh Bajgain Profile Photo",
-    caption:
-      "Profile photo of Dinesh Bajgain, Software Engineer specializing in React, Next.js, Node.js, Python, and Machine Learning",
-  },
-};
-
 // Page priority configuration - add new pages here to customize their priority
 const PAGE_PRIORITIES: Record<
   string,
@@ -67,7 +45,7 @@ const PAGE_PRIORITIES: Record<
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = seoMetadata.siteUrl;
-  const currentDate = new Date().toISOString();
+  const currentDate = new Date();
 
   // Include canonical route URLs only (avoid fragment URLs like #about)
   const staticPages: MetadataRoute.Sitemap = Object.entries(
@@ -78,16 +56,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: config.changeFrequency,
     priority: config.priority,
   }));
-
-  // Explicitly include critical images so crawlers can discover them quickly
-  const imagePages: MetadataRoute.Sitemap = Object.values(SITE_IMAGES).map(
-    (img) => ({
-      url: `${baseUrl}${img.loc}`,
-      lastModified: currentDate,
-      changeFrequency: "yearly",
-      priority: 0.6,
-    }),
-  );
 
   // Dynamic project pages with individual priorities
   const projects = projectsData as Project[];
@@ -101,5 +69,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }),
   );
 
-  return [...staticPages, ...projectPages, ...imagePages];
+  return [...staticPages, ...projectPages];
 }
