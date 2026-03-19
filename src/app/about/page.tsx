@@ -20,17 +20,17 @@ export const metadata: Metadata = {
     url: seoMetadata.siteUrl + seoMetadata.pages.about.canonical,
     images: [
       {
-        url: seoMetadata.ogImage,
-        width: 1200,
-        height: 630,
-        alt: "About Dinesh Bajgain - Full Stack Developer",
+        url: seoMetadata.portraitImage,
+        width: 4000,
+        height: 6000,
+        alt: "Portrait of Dinesh Bajgain - Full Stack Developer and AI/ML Enthusiast",
       },
     ],
   },
   twitter: {
     title: seoMetadata.pages.about.title,
     description: seoMetadata.pages.about.description,
-    images: [seoMetadata.ogImage],
+    images: [seoMetadata.portraitImage],
   },
 };
 
@@ -41,10 +41,12 @@ export default function AboutPage() {
     jobTitle: about.role,
     description: seoMetadata.pages.about.description,
   });
+  const profilePageSchema = seoMetadata.structuredData.profilePage;
 
   return (
     <main className="about-page" id="about">
       <JsonLd data={aboutPageSchema} />
+      <JsonLd data={profilePageSchema} />
       {/* Hero Section */}
       <section className="about-hero">
         <div className="hero-content">
