@@ -73,7 +73,7 @@ export default function ExperiencePage() {
         "@type": "Occupation",
         name: exp.position,
         occupationLocation: {
-          "@type": "Place",
+          "@type": "AdministrativeArea",
           name: exp.location,
         },
         description: exp.description,
