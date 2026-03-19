@@ -21,12 +21,18 @@ export const metadata: Metadata = {
         height: 630,
         alt: "Dinesh Bajgain - Full Stack Developer & AI/ML Enthusiast",
       },
+      {
+        url: seoMetadata.portraitImage,
+        width: 4000,
+        height: 6000,
+        alt: "Portrait of Dinesh Bajgain",
+      },
     ],
   },
   twitter: {
     title: seoMetadata.pages.home.title,
     description: seoMetadata.pages.home.description,
-    images: [seoMetadata.ogImage],
+    images: [seoMetadata.ogImage, seoMetadata.portraitImage],
   },
 };
 
