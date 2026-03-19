@@ -128,11 +128,15 @@
       "alternateName": ["Mr. Bajgain", "Dinesh B.", "dinesh-bazgain"],
       "description": "Full Stack Developer and AI/ML Enthusiast from Lalitpur, Nepal. Specializing in React, Next.js, Node.js, Python, and Machine Learning. Building intelligent, scalable digital experiences.",
       "url": "https://www.dinesh-bajgain.com.np",
+      "mainEntityOfPage": "https://www.dinesh-bajgain.com.np/about",
       "image": {
         "@type": "ImageObject",
         "url": "https://www.dinesh-bajgain.com.np/portrait.png",
-        "width": 400,
-        "height": 400
+        "contentUrl": "https://www.dinesh-bajgain.com.np/portrait.png",
+        "thumbnailUrl": "https://www.dinesh-bajgain.com.np/profile.jpeg",
+        "caption": "Portrait of Dinesh Bajgain",
+        "width": 4000,
+        "height": 6000
       },
       "email": "mailto:dinesh.bazgain@gmail.com",
       "telephone": null,
