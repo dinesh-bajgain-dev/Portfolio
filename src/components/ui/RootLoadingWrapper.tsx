@@ -8,6 +8,10 @@ interface RootLoadingWrapperProps {
   children: React.ReactNode;
 }
 
+function isCrawlerUserAgent(userAgent: string): boolean {
+  return /bot|crawler|spider|bingpreview|googleweblight/i.test(userAgent);
+}
+
 export default function RootLoadingWrapper({
   children,
 }: RootLoadingWrapperProps) {
@@ -18,8 +22,12 @@ export default function RootLoadingWrapper({
   useEffect(() => {
     setIsClient(true);
 
+    // Skip splash/loading for crawlers so main content is indexable immediately.
+    const userAgent = navigator.userAgent || "";
+    const isCrawler = isCrawlerUserAgent(userAgent);
+
     // Only show loading screen for the root path "/" on first visit
-    if (pathname === "/" || pathname === "") {
+    if (!isCrawler && (pathname === "/" || pathname === "")) {
       const hasVisited = sessionStorage.getItem("hasVisitedRoot");
       if (!hasVisited) {
         setIsLoading(true);
