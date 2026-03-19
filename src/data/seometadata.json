@@ -125,7 +125,16 @@
       "@type": "Person",
       "@id": "https://www.dinesh-bajgain.com.np/#person",
       "name": "Dinesh Bajgain",
-      "alternateName": ["Mr. Bajgain", "Dinesh B.", "dinesh-bazgain"],
+      "alternateName": [
+        "Mr. Bajgain",
+        "Dinesh B.",
+        "dinesh-bazgain",
+        "dinesh_bajgain",
+        "Dinesh Bajgain Developer",
+        "mr. bajgain",
+        "dinesh",
+        "bajgain"
+      ],
       "description": "Full Stack Developer and AI/ML Enthusiast from Lalitpur, Nepal. Specializing in React, Next.js, Node.js, Python, and Machine Learning. Building intelligent, scalable digital experiences.",
       "url": "https://www.dinesh-bajgain.com.np",
       "mainEntityOfPage": "https://www.dinesh-bajgain.com.np/about",
@@ -160,11 +169,11 @@
         "name": "Nepal"
       },
       "sameAs": [
-        "https://github.com/dinesh-bazgain",
-        "https://www.linkedin.com/in/mr-bajgain/",
-        "https://x.com/Mr_Bajgain",
-        "https://instagram.com/mr.bajgain",
-        "https://facebook.com/mr.bajgain"
+        "https://github.com/dinesh-bajgain-dev",
+        "https://www.linkedin.com/in/dinesh-bajgain/",
+        "https://x.com/dinesh__bajgain",
+        "https://www.instagram.com/mr.bajgain/",
+        "https://www.facebook.com/mr.bajgain"
       ],
       "knowsAbout": [
         "Full Stack Web Development",
@@ -190,7 +199,7 @@
         "@type": "Occupation",
         "name": "Full Stack Developer",
         "occupationLocation": {
-          "@type": "Country",
+          "@type": "AdministrativeArea",
           "name": "Nepal"
         },
         "skills": "React, Next.js, Node.js, Python, AI/ML, MongoDB, PostgreSQL"
@@ -313,11 +322,11 @@
     }
   },
   "social": {
-    "github": "https://github.com/dinesh-bazgain",
-    "linkedin": "https://www.linkedin.com/in/mr-bajgain/",
-    "twitter": "https://x.com/Mr_Bajgain",
-    "instagram": "https://instagram.com/mr.bajgain",
-    "facebook": "https://facebook.com/mr.bajgain"
+    "github": "https://github.com/dinesh-bajgain-dev",
+    "linkedin": "https://www.linkedin.com/in/dinesh-bajgain/",
+    "twitter": "https://x.com/dinesh__bajgain",
+    "instagram": "https://www.instagram.com/mr.bajgain/",
+    "facebook": "https://www.facebook.com/mr.bajgain"
   },
   "verification": {
     "google": "LksK03gLYpAzjINWrg-ecdDN65_ceeg2jjEk70Uahh8",
