@@ -70,6 +70,13 @@ export const metadata: Metadata = {
         alt: `${seoMetadata.siteAuthor} - Full Stack Developer & AI/ML`,
         type: "image/png",
       },
+      {
+        url: `${seoMetadata.siteUrl}${seoMetadata.portraitImage}`,
+        width: 4000,
+        height: 6000,
+        alt: `Portrait of ${seoMetadata.siteAuthor}`,
+        type: "image/png",
+      },
     ],
   },
   twitter: {
