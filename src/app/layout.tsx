@@ -111,6 +111,17 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const personStructuredData = {
+    ...seoMetadata.structuredData.person,
+    sameAs: [
+      seoMetadata.social.github,
+      seoMetadata.social.linkedin,
+      seoMetadata.social.twitter,
+      seoMetadata.social.instagram,
+      seoMetadata.social.facebook,
+    ],
+  };
+
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -130,7 +141,7 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(seoMetadata.structuredData.person),
+            __html: JSON.stringify(personStructuredData),
           }}
         />
         {/* JSON-LD Structured Data for Website */}
