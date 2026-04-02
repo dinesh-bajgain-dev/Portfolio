@@ -55,6 +55,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: currentDate,
     changeFrequency: config.changeFrequency,
     priority: config.priority,
+    images:
+      path === "/"
+        ? [
+            `${baseUrl}${seoMetadata.ogImage}`,
+            `${baseUrl}${seoMetadata.portraitImage}`,
+          ]
+        : [`${baseUrl}${seoMetadata.ogImage}`],
   }));
 
   // Dynamic project pages with individual priorities
@@ -66,6 +73,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       // Higher priority for first few projects (featured)
       priority: index < 3 ? 0.7 : 0.6,
+      images: [`${baseUrl}${seoMetadata.ogImage}`],
     }),
   );
 
