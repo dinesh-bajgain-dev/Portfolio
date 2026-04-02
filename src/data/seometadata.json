@@ -4,7 +4,8 @@
   "siteAuthor": "Dinesh Bajgain",
   "siteLocale": "en_US",
   "twitterHandle": "@dinesh__bajgain",
-  "portraitImage": ["/portrait.png", "/profile.jpeg"],
+  "portraitImage": "/portrait.png",
+  "portraitImages": ["/portrait.png", "/profile.jpeg"],
   "ogImage": "/og-image.png",
   "iconImage": "/favicon.svg",
   "defaultKeywords": [
