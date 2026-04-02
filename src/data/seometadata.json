@@ -3,8 +3,8 @@
   "siteName": "Dinesh Bajgain | Portfolio",
   "siteAuthor": "Dinesh Bajgain",
   "siteLocale": "en_US",
-  "twitterHandle": "@Mr_Bajgain",
-  "portraitImage": "/portrait.png",
+  "twitterHandle": "@dinesh__bajgain",
+  "portraitImage": ["/portrait.png", "/profile.jpeg"],
   "ogImage": "/og-image.png",
   "iconImage": "/favicon.svg",
   "defaultKeywords": [
