@@ -26,6 +26,8 @@ export function generateProjectSchema({
   description,
   slug,
   tags,
+  codeRepository,
+  liveUrl,
   datePublished,
   dateModified,
   authorName = "Dinesh Bajgain",
@@ -35,6 +37,8 @@ export function generateProjectSchema({
   description: string;
   slug: string;
   tags?: string[];
+  codeRepository?: string;
+  liveUrl?: string;
   datePublished?: string;
   dateModified?: string;
   authorName?: string;
@@ -46,6 +50,10 @@ export function generateProjectSchema({
     name: title,
     description: description,
     url: `${siteUrl}/project/${slug}`,
+    isPartOf: {
+      "@type": "WebSite",
+      url: siteUrl,
+    },
     author: {
       "@type": "Person",
       name: authorName,
@@ -54,7 +62,8 @@ export function generateProjectSchema({
     dateCreated: datePublished || new Date().toISOString(),
     dateModified: dateModified || new Date().toISOString(),
     programmingLanguage: tags || [],
-    codeRepository: `${siteUrl}/project/${slug}`,
+    codeRepository: codeRepository || `${siteUrl}/project/${slug}`,
+    sameAs: liveUrl ? [liveUrl] : undefined,
     applicationCategory: "WebApplication",
   };
 }
