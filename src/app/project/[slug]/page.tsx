@@ -11,10 +11,11 @@ type Project = {
   title: string;
   description: string;
   features: string[];
-  demo: string;
+  tags: string[];
+  codeUrl?: string | null;
+  liveUrl?: string | null;
   subTitle: string;
   slug: string;
-  external: string | null;
 };
 
 const projects = projectsData as unknown as Project[];
@@ -49,7 +50,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       "Dinesh Bajgain",
       "Project",
       "Portfolio",
-      ...project.features.slice(0, 3),
+      ...project.tags.slice(0, 4),
     ],
     alternates: {
       canonical: `/project/${slug}`,
@@ -61,7 +62,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       type: "article",
       images: [
         {
-          url: seoMetadata.ogImage,
+          url: `${seoMetadata.siteUrl}${seoMetadata.ogImage}`,
           width: 1200,
           height: 630,
           alt: `${project.title} - Dinesh Bajgain`,
@@ -72,7 +73,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       card: "summary_large_image",
       title,
       description,
-      images: [seoMetadata.ogImage],
+      images: [`${seoMetadata.siteUrl}${seoMetadata.ogImage}`],
     },
   };
 }
@@ -89,7 +90,9 @@ export default async function Page({ params }: Props) {
     title: project.title,
     description: project.description,
     slug: project.slug,
-    tags: project.features,
+    tags: project.tags,
+    codeRepository: project.codeUrl || undefined,
+    liveUrl: project.liveUrl || undefined,
     siteUrl: seoMetadata.siteUrl,
   });
 
@@ -105,12 +108,16 @@ export default async function Page({ params }: Props) {
         ))}
       </ul>
       <a
-        href={project.demo}
+        href={
+          project.liveUrl ||
+          project.codeUrl ||
+          `${seoMetadata.siteUrl}/project/${project.slug}`
+        }
         target="_blank"
         rel="noopener noreferrer"
         className="project-demo-btn"
       >
-        Live Demo
+        {project.liveUrl ? "Live Demo" : "View Project"}
       </a>
     </main>
   );
