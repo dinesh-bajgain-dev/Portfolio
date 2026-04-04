@@ -4,13 +4,26 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: var(--backdrop-bg);
+  background:
+    radial-gradient(
+      circle at 20% 15%,
+      color-mix(in srgb, var(--accent-blue) 28%, transparent),
+      transparent 48%
+    ),
+    radial-gradient(
+      circle at 85% 80%,
+      color-mix(in srgb, var(--foreground) 10%, transparent),
+      transparent 42%
+    ),
+    var(--backdrop-bg);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
-  backdrop-filter: blur(4px);
-  animation: fadeIn 0.2s ease-out;
+  z-index: 20000;
+  backdrop-filter: blur(8px) saturate(130%);
+  animation: fadeIn 0.24s ease-out;
+  padding: 1rem;
+  isolation: isolate;
 }
 
 @keyframes fadeIn {
@@ -24,17 +37,24 @@
 }
 
 .modal-content {
-  background: var(--background);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  max-width: 600px;
-  width: 90%;
-  max-height: 85vh;
+  background: color-mix(
+    in srgb,
+    var(--background) 94%,
+    var(--hover-background) 6%
+  );
+  border: 1px solid color-mix(in srgb, var(--border) 90%, var(--primary) 10%);
+  border-radius: 20px;
+  max-width: 920px;
+  width: min(92vw, 920px);
+  max-height: min(88vh, 920px);
   overflow-y: auto;
   position: relative;
-  padding: 2rem;
-  animation: slideUp 0.3s ease-out;
-  box-shadow: var(--shadow-lg);
+  isolation: isolate;
+  padding: clamp(1rem, 1.1vw + 0.9rem, 2.1rem);
+  animation: slideUp 0.32s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow:
+    0 28px 90px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
 @keyframes slideUp {
@@ -50,134 +70,210 @@
 }
 
 .modal-close {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: transparent;
-  border: none;
+  position: sticky;
+  top: 0.2rem;
+  margin-left: auto;
+  background: color-mix(
+    in srgb,
+    var(--background) 65%,
+    var(--hover-background) 35%
+  );
+  border: 1px solid var(--border);
   color: var(--primary);
   cursor: pointer;
-  padding: 0.5rem;
-  border-radius: 6px;
-  transition: background 0.2s ease;
+  width: 2.3rem;
+  height: 2.3rem;
+  border-radius: 999px;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    border-color 0.2s ease;
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 2;
 }
 
 .modal-close:hover {
   background: var(--hover-background);
-}
-
-.modal-header {
-  margin-bottom: 1.5rem;
-  padding-right: 2.5rem;
-}
-
-.modal-title {
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--primary);
-  margin: 0 0 0.5rem 0;
-}
-
-.modal-period {
-  font-size: 0.9rem;
-  color: var(--secondary);
-  margin: 0;
+  border-color: color-mix(in srgb, var(--accent-blue) 55%, var(--border));
+  transform: scale(1.04);
 }
 
 .modal-body {
   color: var(--primary);
 }
 
-.modal-description {
+.modal-section {
+  margin-top: 0.25rem;
+}
+
+.modal-readme-status {
+  margin: 0.4rem 0;
+  color: var(--secondary);
   font-size: 1rem;
   line-height: 1.6;
-  color: var(--secondary);
-  margin-bottom: 1.5rem;
 }
 
-.modal-section {
-  margin-bottom: 1.5rem;
+.modal-readme-status-error {
+  color: #d93025;
 }
 
-.modal-section-title {
-  font-size: 1.1rem;
-  font-weight: 600;
+.modal-readme-markdown {
+  padding: clamp(1rem, 1.1vw + 0.8rem, 1.6rem);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--hover-background) 90%, var(--background) 10%),
+    color-mix(in srgb, var(--hover-background) 72%, var(--background) 28%)
+  );
   color: var(--primary);
-  margin: 0 0 0.75rem 0;
+  max-height: calc(min(88vh, 920px) - 5.4rem);
+  overflow: auto;
+  line-height: 1.7;
 }
 
-.modal-features-list {
-  list-style-position: inside;
-  padding-left: 0;
-  margin: 0;
-  color: var(--secondary);
-  line-height: 1.8;
+.modal-readme-markdown > :first-child {
+  margin-top: 0;
 }
 
-.modal-features-list li {
-  margin-bottom: 0.5rem;
+.modal-readme-markdown > :last-child {
+  margin-bottom: 0;
 }
 
-.modal-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+.modal-readme-markdown h1,
+.modal-readme-markdown h2,
+.modal-readme-markdown h3,
+.modal-readme-markdown h4 {
+  color: var(--primary);
+  margin-top: 1.55rem;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.015em;
+  line-height: 1.3;
 }
 
-.modal-tag {
-  background: var(--accent-blue);
-  color: var(--primary-foreground);
-  padding: 0.4rem 0.8rem;
-  border-radius: 6px;
-  font-size: 0.85rem;
-  font-weight: 500;
+.modal-readme-markdown h1 {
+  font-size: clamp(1.45rem, 1.1vw + 1rem, 2rem);
 }
 
-.modal-actions {
-  display: flex;
-  gap: 1rem;
-  margin-top: 2rem;
-  flex-wrap: wrap;
+.modal-readme-markdown h2 {
+  font-size: clamp(1.2rem, 0.7vw + 0.95rem, 1.6rem);
+  border-bottom: 1px solid color-mix(in srgb, var(--border) 88%, transparent);
+  padding-bottom: 0.36rem;
 }
 
-.modal-button {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
-  border-radius: 8px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: all 0.2s ease;
-  border: none;
-  cursor: pointer;
+.modal-readme-markdown h3 {
+  font-size: 1.1rem;
+}
+
+.modal-readme-markdown h4 {
   font-size: 1rem;
 }
 
-.modal-button-primary {
-  background: var(--accent-blue);
-  color: var(--primary-foreground);
+.modal-readme-markdown p,
+.modal-readme-markdown li {
+  color: color-mix(in srgb, var(--primary) 84%, var(--secondary) 16%);
+  font-size: clamp(0.95rem, 0.32vw + 0.86rem, 1.02rem);
 }
 
-.modal-button-primary:hover {
-  background: var(--accent-blue-hover);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow);
+.modal-readme-markdown ul,
+.modal-readme-markdown ol {
+  padding-left: 1.45rem;
+  margin: 0.6rem 0 1.1rem;
 }
 
-.modal-button-secondary {
-  background: transparent;
-  color: var(--primary);
+.modal-readme-markdown li + li {
+  margin-top: 0.34rem;
+}
+
+.modal-readme-markdown hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 1.3rem 0;
+}
+
+.modal-readme-markdown code {
+  background: color-mix(
+    in srgb,
+    var(--hover-background) 72%,
+    var(--foreground) 8%
+  );
+  padding: 0.14rem 0.42rem;
+  border-radius: 6px;
+  font-size: 0.85em;
+}
+
+.modal-readme-markdown pre {
+  overflow: auto;
+  padding: 1rem;
+  border-radius: 10px;
   border: 1px solid var(--border);
+  background: color-mix(
+    in srgb,
+    var(--background) 88%,
+    var(--hover-background) 12%
+  );
+  margin: 1rem 0 1.2rem;
 }
 
-.modal-button-secondary:hover {
-  background: var(--hover-background);
-  border-color: var(--accent-blue);
-  transform: translateY(-2px);
+.modal-readme-markdown pre code {
+  background: transparent;
+  padding: 0;
+}
+
+.modal-readme-markdown blockquote {
+  margin: 1rem 0;
+  padding: 0.65rem 0.95rem;
+  border-left: 3px solid
+    color-mix(in srgb, var(--accent-blue) 65%, var(--border));
+  background: color-mix(
+    in srgb,
+    var(--hover-background) 75%,
+    var(--background) 25%
+  );
+  border-radius: 0 8px 8px 0;
+}
+
+.modal-readme-markdown table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.92rem;
+}
+
+.modal-readme-markdown th,
+.modal-readme-markdown td {
+  border: 1px solid var(--border);
+  padding: 0.55rem 0.62rem;
+  text-align: left;
+}
+
+.modal-readme-markdown th {
+  background: color-mix(
+    in srgb,
+    var(--hover-background) 86%,
+    var(--background) 14%
+  );
+  color: var(--primary);
+}
+
+.modal-readme-markdown img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  margin: 1rem auto;
+}
+
+.modal-readme-markdown a {
+  color: var(--accent-blue);
+  text-underline-offset: 2px;
+}
+
+.modal-readme-markdown a:hover {
+  color: var(--accent-blue-hover);
 }
 
 /* Scrollbar styling */
@@ -206,11 +302,10 @@
   }
 
   .modal-content {
-    padding: 1.5rem;
-    padding-bottom: 2rem;
-    max-height: 85vh;
+    padding: 1rem;
+    max-height: 90vh;
     width: 100%;
-    border-radius: 1.5rem 1.5rem 0 0;
+    border-radius: 1.25rem 1.25rem 0 0;
     animation: slideUpMobile 0.3s ease-out;
   }
 
@@ -225,49 +320,29 @@
     }
   }
 
-  .modal-title {
-    font-size: 1.5rem;
+  .modal-close {
+    top: 0;
+    width: 2.15rem;
+    height: 2.15rem;
   }
 
-  .modal-description {
-    font-size: 0.95rem;
-  }
-
-  .modal-features-list {
-    font-size: 0.9rem;
-  }
-
-  .modal-actions {
-    flex-direction: column;
-  }
-
-  .modal-button {
-    width: 100%;
-    justify-content: center;
-    padding: 0.875rem 1.5rem;
+  .modal-readme-markdown {
+    max-height: calc(90vh - 4rem);
+    border-radius: 12px;
   }
 }
 
 @media (max-width: 480px) {
   .modal-content {
-    padding: 1.25rem;
-    padding-bottom: 1.5rem;
+    padding: 0.85rem;
   }
 
-  .modal-header {
-    margin-bottom: 1rem;
+  .modal-readme-markdown {
+    padding: 0.85rem;
+    max-height: calc(90vh - 3.6rem);
   }
 
-  .modal-title {
-    font-size: 1.25rem;
-  }
-
-  .modal-section {
-    margin-bottom: 1rem;
-  }
-
-  .modal-tag {
-    font-size: 0.75rem;
-    padding: 0.3rem 0.6rem;
+  .modal-readme-markdown table {
+    font-size: 0.86rem;
   }
 }
