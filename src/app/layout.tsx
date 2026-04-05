@@ -171,7 +171,7 @@ export default function RootLayout({
           attribute="class"
           defaultTheme="system"
           enableSystem
-          storageKey="portfolio-theme"
+          storageKey="portfolio-theme-v2"
           disableTransitionOnChange={false}
         >
           <RootLoadingWrapper>
