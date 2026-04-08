@@ -8,7 +8,6 @@ export interface NavItem {
 }
 
 // SPA Navigation - all sections are on the home page with hash links
-// This works across all pages by navigating to home with hash fragments
 export const NAV_ITEMS: NavItem[] = [
   { id: "home", label: "Home", href: "/#home" },
   { id: "about", label: "About", href: "/#about" },
