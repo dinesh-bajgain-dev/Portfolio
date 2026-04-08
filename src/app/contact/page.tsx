@@ -18,6 +18,7 @@ export const metadata: Metadata = {
   title: seoMetadata.pages.contact.title,
   description: seoMetadata.pages.contact.description,
   keywords: seoMetadata.pages.contact.keywords,
+  robots: { index: false, follow: false },
   alternates: {
     canonical: seoMetadata.pages.contact.canonical,
   },
