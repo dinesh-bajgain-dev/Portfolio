@@ -5,18 +5,13 @@ import { X } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { createPortal } from "react-dom";
+import readmesData from "@/data/readmes.json";
 import "./ProjectModal.css";
 
 type RepoInfo = {
   owner: string;
   repo: string;
 };
-
-type ReadmeCacheValue = {
-  content: string;
-};
-
-const readmeCache = new Map<string, ReadmeCacheValue>();
 
 type Project = {
   title: string;
@@ -60,12 +55,6 @@ function parseGitHubRepo(repoUrl: string | null): RepoInfo | null {
   }
 }
 
-function decodeBase64Utf8(base64Content: string): string {
-  const binaryString = atob(base64Content);
-  const bytes = Uint8Array.from(binaryString, (char) => char.charCodeAt(0));
-  return new TextDecoder().decode(bytes);
-}
-
 export default function ProjectModal({
   project,
   isOpen,
@@ -73,7 +62,6 @@ export default function ProjectModal({
 }: ProjectModalProps) {
   const [isMounted, setIsMounted] = useState(false);
   const [readmeContent, setReadmeContent] = useState<string | null>(null);
-  const [isReadmeLoading, setIsReadmeLoading] = useState(false);
   const [readmeError, setReadmeError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -95,7 +83,6 @@ export default function ProjectModal({
     if (!project || !isOpen) {
       setReadmeContent(null);
       setReadmeError(null);
-      setIsReadmeLoading(false);
       return;
     }
 
@@ -103,71 +90,21 @@ export default function ProjectModal({
     if (!repoInfo) {
       setReadmeContent(null);
       setReadmeError("README source is unavailable for this project.");
-      setIsReadmeLoading(false);
       return;
     }
 
     const cacheKey = `${repoInfo.owner}/${repoInfo.repo}`;
-    const cachedReadme = readmeCache.get(cacheKey);
-    if (cachedReadme) {
-      setReadmeContent(cachedReadme.content);
+    const readme = (readmesData as Record<string, string | undefined>)[
+      cacheKey
+    ];
+
+    if (readme) {
+      setReadmeContent(readme);
       setReadmeError(null);
-      setIsReadmeLoading(false);
-      return;
+    } else {
+      setReadmeContent(null);
+      setReadmeError("README details for this project are not available.");
     }
-
-    const controller = new AbortController();
-
-    const loadReadme = async () => {
-      setIsReadmeLoading(true);
-      setReadmeError(null);
-
-      try {
-        const response = await fetch(
-          `https://api.github.com/repos/${repoInfo.owner}/${repoInfo.repo}/readme`,
-          {
-            headers: {
-              Accept: "application/vnd.github+json",
-            },
-            signal: controller.signal,
-          },
-        );
-
-        if (!response.ok) {
-          throw new Error("Unable to fetch README from GitHub.");
-        }
-
-        const data = await response.json();
-        const content =
-          typeof data.content === "string"
-            ? decodeBase64Utf8(data.content)
-            : "";
-
-        if (!content.trim()) {
-          throw new Error("README file is empty.");
-        }
-
-        readmeCache.set(cacheKey, {
-          content,
-        });
-
-        setReadmeContent(content);
-        setReadmeError(null);
-      } catch (error) {
-        if ((error as Error).name !== "AbortError") {
-          setReadmeContent(null);
-          setReadmeError("Could not load README details right now.");
-        }
-      } finally {
-        setIsReadmeLoading(false);
-      }
-    };
-
-    void loadReadme();
-
-    return () => {
-      controller.abort();
-    };
   }, [isOpen, project]);
 
   if (!isOpen || !project || !isMounted) return null;
@@ -191,17 +128,12 @@ export default function ProjectModal({
 
         <div className="modal-body">
           <div className="modal-section">
-            {isReadmeLoading && (
-              <p className="modal-readme-status">
-                Loading detailed README info...
-              </p>
-            )}
-            {!isReadmeLoading && readmeError && (
+            {readmeError && (
               <p className="modal-readme-status modal-readme-status-error">
                 {readmeError}
               </p>
             )}
-            {!isReadmeLoading && readmeContent && (
+            {readmeContent && (
               <div className="modal-readme-markdown">
                 <ReactMarkdown remarkPlugins={[remarkGfm]}>
                   {readmeContent}
