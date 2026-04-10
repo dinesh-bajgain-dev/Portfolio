@@ -15,6 +15,22 @@
     "liveUrl": "https://vedasamvaad-frontend.onrender.com/"
   },
   {
+    "title": "EstatePortal",
+    "slug": "estate-portal",
+    "description": "A platform for buying and selling real estate properties.",
+    "subTitle": "A modern real estate listing platform built with React and Node.js",
+    "features": [
+      "Property listings",
+      "User authentication",
+      "Search and filter options",
+      "Responsive design"
+    ],
+    "tags": ["React", "Node.js", "Express", "postgreSQL"],
+    "external": null,
+    "codeUrl": "https://github.com/dinesh-bajgain-dev/real_estate_portal",
+    "liveUrl": "https://real-estate-portal-seven.vercel.app/"
+  },
+  {
     "title": "Kanban System",
     "slug": "kanban-system",
     "description": "A simple Kanban system web app.",
