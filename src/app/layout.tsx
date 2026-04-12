@@ -165,6 +165,13 @@ export default function RootLayout({
             __html: JSON.stringify(seoMetadata.structuredData.faq),
           }}
         />
+        {/* JSON-LD Structured Data for ProfilePage */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(seoMetadata.structuredData.profilePage),
+          }}
+        />
       </head>
       <body className={`${inter.variable} antialiased`}>
         <ThemeProvider
