@@ -45,7 +45,7 @@ const PAGE_PRIORITIES: Record<
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = seoMetadata.siteUrl;
-  const currentDate = new Date();
+  const currentDate = new Date().toISOString().split("T")[0];
 
   // Include canonical route URLs only (avoid fragment URLs like #about)
   const staticPages: MetadataRoute.Sitemap = Object.entries(
