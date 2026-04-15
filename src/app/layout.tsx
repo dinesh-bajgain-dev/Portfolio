@@ -186,7 +186,6 @@ export default function RootLayout({
         >
           <RootLoadingWrapper>
             <Navbar orientation="horizontal" />
-            {/* ↓ Add id here for skip-link target */}
             <main id="main-content" className="page-content">
               {children}
             </main>
