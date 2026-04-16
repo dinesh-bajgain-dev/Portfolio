@@ -174,6 +174,9 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.variable} antialiased`}>
+        <a href="#main-content" className="skip-link">
+          Skip to content
+        </a>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -183,7 +186,10 @@ export default function RootLayout({
         >
           <RootLoadingWrapper>
             <Navbar orientation="horizontal" />
-            <main className="page-content">{children}</main>
+            {/* ↓ Add id here for skip-link target */}
+            <main id="main-content" className="page-content">
+              {children}
+            </main>
           </RootLoadingWrapper>
         </ThemeProvider>
       </body>
