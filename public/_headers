@@ -10,3 +10,17 @@
 # Cache static assets for 1 year
 /icons/*
   Cache-Control: public, max-age=31536000, immutable
+
+# Cache profile images for 30 days - important for Google Images indexing
+/portrait.png
+  Cache-Control: public, max-age=2592000, must-revalidate
+  Content-Type: image/png
+
+/profile.jpeg
+  Cache-Control: public, max-age=2592000, must-revalidate
+  Content-Type: image/jpeg
+
+# Cache OG image for 30 days
+/og-image.png
+  Cache-Control: public, max-age=2592000, must-revalidate
+  Content-Type: image/png
