@@ -77,6 +77,13 @@ export const metadata: Metadata = {
         alt: `Portrait of ${seoMetadata.siteAuthor}`,
         type: "image/png",
       },
+      {
+        url: `${seoMetadata.siteUrl}/profile.jpeg`,
+        width: 600,
+        height: 600,
+        alt: `Profile picture of ${seoMetadata.siteAuthor}`,
+        type: "image/jpeg",
+      },
     ],
   },
   twitter: {
