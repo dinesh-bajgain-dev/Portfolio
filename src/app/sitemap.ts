@@ -60,8 +60,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
         ? [
             `${baseUrl}${seoMetadata.ogImage}`,
             `${baseUrl}${seoMetadata.portraitImage}`,
+            `${baseUrl}/profile.jpeg`,
           ]
-        : [`${baseUrl}${seoMetadata.ogImage}`],
+        : path === "/about"
+          ? [
+              `${baseUrl}${seoMetadata.portraitImage}`,
+              `${baseUrl}/profile.jpeg`,
+            ]
+          : [`${baseUrl}${seoMetadata.ogImage}`],
   }));
 
   // Dynamic project pages with individual priorities
