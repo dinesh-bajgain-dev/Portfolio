@@ -21,17 +21,26 @@ export const metadata: Metadata = {
     url: seoMetadata.siteUrl + seoMetadata.pages.about.canonical,
     images: [
       {
-        url: seoMetadata.portraitImage,
+        url: `${seoMetadata.siteUrl}${seoMetadata.portraitImage}`,
         width: 4000,
         height: 6000,
         alt: "Portrait of Dinesh Bajgain - Full Stack Developer and AI/ML Enthusiast",
+      },
+      {
+        url: `${seoMetadata.siteUrl}/profile.jpeg`,
+        width: 600,
+        height: 600,
+        alt: "Profile picture of Dinesh Bajgain",
       },
     ],
   },
   twitter: {
     title: seoMetadata.pages.about.title,
     description: seoMetadata.pages.about.description,
-    images: [seoMetadata.portraitImage],
+    images: [
+      `${seoMetadata.siteUrl}${seoMetadata.portraitImage}`,
+      `${seoMetadata.siteUrl}/profile.jpeg`,
+    ],
   },
 };
 
@@ -72,6 +81,7 @@ export default function AboutPage() {
               height={28}
               className="section-icon-photo"
               title="Dinesh Bajgain"
+              fetchPriority="high"
             />
             <h1 className="section-title">My Story</h1>
           </div>
