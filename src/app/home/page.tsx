@@ -63,6 +63,7 @@ export default function HomePage() {
               width={400}
               height={400}
               priority
+              fetchPriority="high"
             />
           </div>
         </div>
