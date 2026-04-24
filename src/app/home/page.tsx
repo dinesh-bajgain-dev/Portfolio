@@ -71,27 +71,27 @@ export default function HomePage() {
 
       {/* ========== ABOUT SECTION ========== */}
       {/* <section className="spa-section about-section" id="about"> */}
-        <AboutPage />
+      <AboutPage />
       {/* </section> */}
 
       {/* ========== SKILLS SECTION ========== */}
       {/* <section className="spa-section skills-section" id="skills"> */}
-        <Skills />
+      <Skills />
       {/* </section> */}
 
       {/* ========== PROJECTS SECTION (Carousel with Modal) ========== */}
       {/* <section className="spa-section projects-section" id="projects"> */}
-        <ProjectPage />
+      <ProjectPage />
       {/* </section> */}
 
       {/* ========== EXPERIENCE SECTION ========== */}
       {/* <section className="spa-section experience-section" id="experience"> */}
-        <ExperiencePage />
+      <ExperiencePage />
       {/* </section> */}
 
       {/* ========== CONTACT SECTION ========== */}
       {/* <section className="spa-section contact-section" id="contact"> */}
-        <ContactPage />
+      <ContactPage />
       {/* </section> */}
 
       {/* ========== FOOTER ========== */}
