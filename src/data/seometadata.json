@@ -235,9 +235,40 @@
       "@type": "ProfilePage",
       "@id": "https://www.dinesh-bajgain.com.np/about#profilepage",
       "name": "About Dinesh Bajgain",
+      "description": "Profile page of Dinesh Bajgain - Full Stack Developer and AI/ML Enthusiast from Nepal",
+      "url": "https://www.dinesh-bajgain.com.np/about",
       "mainEntity": {
         "@id": "https://www.dinesh-bajgain.com.np/#person"
       },
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://www.dinesh-bajgain.com.np/portrait.png",
+        "contentUrl": "https://www.dinesh-bajgain.com.np/portrait.png",
+        "width": 4000,
+        "height": 6000,
+        "caption": "Portrait of Dinesh Bajgain - Full Stack Developer",
+        "uploadDate": "2025-11-11T00:00:00+05:45"
+      },
+      "image": [
+        {
+          "@type": "ImageObject",
+          "url": "https://www.dinesh-bajgain.com.np/portrait.png",
+          "contentUrl": "https://www.dinesh-bajgain.com.np/portrait.png",
+          "width": 4000,
+          "height": 6000,
+          "caption": "Portrait of Dinesh Bajgain - Full Stack Developer",
+          "uploadDate": "2025-11-11T00:00:00+05:45"
+        },
+        {
+          "@type": "ImageObject",
+          "url": "https://www.dinesh-bajgain.com.np/profile.jpeg",
+          "contentUrl": "https://www.dinesh-bajgain.com.np/profile.jpeg",
+          "width": 600,
+          "height": 600,
+          "caption": "Profile picture of Dinesh Bajgain",
+          "uploadDate": "2025-11-11T00:00:00+05:45"
+        }
+      ],
       "dateCreated": "2025-11-11T00:00:00+05:45",
       "dateModified": "2026-03-21T00:00:00+05:45"
     },
