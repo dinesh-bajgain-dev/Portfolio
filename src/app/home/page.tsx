@@ -90,9 +90,7 @@ export default function HomePage() {
       {/* </section> */}
 
       {/* ========== CONTACT SECTION ========== */}
-      {/* <section className="spa-section contact-section" id="contact"> */}
       <ContactPage />
-      {/* </section> */}
 
       {/* ========== FOOTER ========== */}
       <Footer />
