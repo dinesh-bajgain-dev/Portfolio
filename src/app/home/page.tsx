@@ -85,9 +85,7 @@ export default function HomePage() {
       {/* </section> */}
 
       {/* ========== EXPERIENCE SECTION ========== */}
-      {/* <section className="spa-section experience-section" id="experience"> */}
       <ExperiencePage />
-      {/* </section> */}
 
       {/* ========== CONTACT SECTION ========== */}
       <ContactPage />
