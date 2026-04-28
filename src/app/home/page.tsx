@@ -80,9 +80,7 @@ export default function HomePage() {
       {/* </section> */}
 
       {/* ========== PROJECTS SECTION (Carousel with Modal) ========== */}
-      {/* <section className="spa-section projects-section" id="projects"> */}
       <ProjectPage />
-      {/* </section> */}
 
       {/* ========== EXPERIENCE SECTION ========== */}
       <ExperiencePage />
