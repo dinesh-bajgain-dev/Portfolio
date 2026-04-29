@@ -75,9 +75,7 @@ export default function HomePage() {
       {/* </section> */}
 
       {/* ========== SKILLS SECTION ========== */}
-      {/* <section className="spa-section skills-section" id="skills"> */}
       <Skills />
-      {/* </section> */}
 
       {/* ========== PROJECTS SECTION (Carousel with Modal) ========== */}
       <ProjectPage />
