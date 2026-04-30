@@ -70,9 +70,7 @@ export default function HomePage() {
       </section>
 
       {/* ========== ABOUT SECTION ========== */}
-      {/* <section className="spa-section about-section" id="about"> */}
       <AboutPage />
-      {/* </section> */}
 
       {/* ========== SKILLS SECTION ========== */}
       <Skills />
