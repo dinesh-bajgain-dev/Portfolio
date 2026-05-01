@@ -1,5 +1,4 @@
 .experience-main {
-  /* margin: clamp(1.5rem, 4vw, 4rem); */
   padding: clamp(1rem, 3vw, 2rem);
   animation: fadeInPage 0.5s ease forwards;
 }
