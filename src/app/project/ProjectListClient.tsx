@@ -48,9 +48,15 @@ export default function ProjectListClient({
     return (
       <>
         <section className="projects-carousel-section" id="projects">
+          <h2 className="projects-carousel-title">Projects</h2>
           <div className="projects-carousel">
-            {projects.map((project) => (
-              <div key={project.slug} className="project-card carousel-card">
+            {projects.map((project, index) => (
+              <div
+                key={project.slug}
+                className="project-card carousel-card"
+                data-reveal
+                style={{ transitionDelay: `${index * 0.06}s` }}
+              >
                 <div className="project-card-header">
                   <div className="project-card-title-section">
                     <h3 className="project-card-title">{project.title}</h3>

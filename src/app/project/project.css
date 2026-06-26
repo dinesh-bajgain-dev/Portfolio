@@ -1,30 +1,6 @@
-body {
-  font-family:
-    Inter,
-    ui-sans-serif,
-    system-ui,
-    -apple-system,
-    "Segoe UI",
-    Roboto,
-    "Helvetica Neue",
-    Arial;
-}
-
 .project-page {
   margin: clamp(1.5rem, 4vw, 4rem);
   color: var(--primary);
-  animation: fadeInPage 0.5s ease forwards;
-}
-
-@keyframes fadeInPage {
-  from {
-    opacity: 0;
-    transform: translateY(15px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 .projects-section {
@@ -95,18 +71,38 @@ body {
   flex: 0 0 calc((100% - 3rem) / 3 - 40px);
   min-width: 280px;
   scroll-snap-align: center;
-  background: var(--card);
-  border: 1px solid var(--border);
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--card-border);
   border-radius: 12px;
   padding: clamp(1.25rem, 3vw, 1.5rem);
   transition:
     transform 0.3s ease,
-    box-shadow 0.3s ease;
+    box-shadow 0.4s ease,
+    border-color 0.3s ease;
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  animation: fadeInUp 0.5s ease forwards;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Top-edge glow line on hover */
+.project-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
   opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.project-card:hover::before {
+  opacity: 1;
 }
 
 .project-card:nth-child(1) {
@@ -128,20 +124,10 @@ body {
   animation-delay: 0.35s;
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 .project-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-6px);
   box-shadow: var(--card-hover-shadow);
+  border-color: var(--accent);
 }
 
 .project-card-header {
@@ -156,10 +142,12 @@ body {
 }
 
 .project-card-title {
-  font-size: 1.5rem;
+  font-family: var(--font-display, system-ui);
+  font-size: 1.25rem;
   margin: 0 0 0.25rem 0;
   font-weight: 600;
   color: var(--primary);
+  letter-spacing: var(--tracking-tight);
 }
 
 .project-card-period {
@@ -191,9 +179,58 @@ body {
 .details-indicator {
   width: 8px;
   height: 8px;
-  background: var(--indicator-dot);
+  background: var(--accent);
   border-radius: 50%;
-  box-shadow: 0 0 8px var(--indicator-dot);
+  box-shadow: 0 0 8px var(--accent-glow);
+  animation: accentPulse 2s ease-in-out infinite;
+}
+
+@keyframes accentPulse {
+  0%   { opacity: 0.7; box-shadow: 0 0 4px var(--accent-glow); }
+  50%  { opacity: 1;   box-shadow: 0 0 12px var(--accent-glow-strong); }
+  100% { opacity: 0.7; box-shadow: 0 0 4px var(--accent-glow); }
+}
+
+/* Carousel section */
+.projects-carousel-section {
+  padding: clamp(1.5rem, 4vw, 4rem) clamp(1.5rem, 4vw, 4rem) 0;
+}
+
+.projects-carousel-title {
+  font-family: var(--font-display, system-ui);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  color: var(--primary);
+  margin: 0 0 clamp(1.5rem, 3vw, 2.5rem) 0;
+  letter-spacing: var(--tracking-tight);
+}
+
+.projects-carousel {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  padding: 0.5rem 0.25rem 1.5rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) transparent;
+}
+
+.projects-carousel::-webkit-scrollbar {
+  height: 4px;
+}
+.projects-carousel::-webkit-scrollbar-track {
+  background: transparent;
+}
+.projects-carousel::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+.carousel-card {
+  flex: 0 0 clamp(280px, 35vw, 380px);
+  scroll-snap-align: start;
 }
 
 .project-card-content {
@@ -222,12 +259,15 @@ body {
 }
 
 .project-tag {
-  background: var(--foreground);
-  color: var(--primary-foreground);
-  padding: 0.35rem 0.7rem;
-  border-radius: 6px;
-  font-size: 0.8rem;
-  font-weight: 500;
+  font-family: var(--font-mono);
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--border);
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
 }
 
 .project-card-actions {
@@ -252,24 +292,26 @@ body {
 
 .project-action-code {
   background: transparent;
-  color: var(--primary);
+  color: var(--accent);
+  border-color: var(--accent);
 }
 
 .project-action-code:hover {
-  background: var(--hover-background);
-  border-color: var(--accent-blue);
+  background: var(--accent);
+  color: var(--accent-foreground);
+  box-shadow: 0 0 16px var(--accent-glow);
   transform: translateY(-2px);
 }
 
 .project-action-demo {
   background: transparent;
-  color: var(--primary);
+  color: var(--text-secondary);
+  border-color: var(--border-strong);
 }
 
 .project-action-demo:hover {
-  background: var(--hover-background);
-  border-color: var(--accent-blue);
-  color: var(--accent-blue);
+  border-color: var(--accent);
+  color: var(--accent);
   transform: translateY(-2px);
 }
 
