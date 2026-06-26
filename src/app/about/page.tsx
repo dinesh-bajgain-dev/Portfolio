@@ -59,7 +59,7 @@ export default function AboutPage() {
       <JsonLd data={profilePageSchema} />
       {/* Hero Section */}
       <section className="about-hero">
-        <div className="hero-content">
+        <div className="hero-content" data-reveal>
           <span className="hero-greeting">Hello, I&apos;m</span>
           <h1 className="hero-name">{about.name}</h1>
           <p className="hero-role">{about.role}</p>
@@ -71,7 +71,7 @@ export default function AboutPage() {
         </div>
       </section>
       {/* Your Story Section */}
-      <section className="about-section story-section">
+      <section className="about-section story-section" data-reveal="fade-left" style={{ transitionDelay: "0.15s" }}>
         <div className="section-container">
           <div className="section-header">
             <Image
