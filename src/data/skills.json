@@ -2,6 +2,7 @@
   "Programming Languages": [
     { "name": "JavaScript", "icon": "/icons/javascript.svg" },
     { "name": "TypeScript", "icon": "/icons/typescript.svg" },
+    { "name": "Python", "icon": "/icons/python.svg" },
     { "name": "SQL", "icon": "/icons/sql.svg" }
   ],
   "Backend Technologies": [
