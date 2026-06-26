@@ -95,8 +95,13 @@ export default function ExperiencePage() {
           <h1 className="experience-title">Work Experience</h1>
 
           <div className="experience-timeline">
-            {experiences.map((exp) => (
-              <div key={exp.id} className="timeline-item">
+            {experiences.map((exp, index) => (
+              <div
+                key={exp.id}
+                className="timeline-item"
+                data-reveal
+                style={{ transitionDelay: `${index * 0.1}s` }}
+              >
                 <div className="timeline-marker">
                   <div className="timeline-dot"></div>
                   <div className="timeline-line"></div>

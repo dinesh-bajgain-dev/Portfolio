@@ -1,17 +1,5 @@
 .experience-main {
   padding: clamp(1rem, 3vw, 2rem);
-  animation: fadeInPage 0.5s ease forwards;
-}
-
-@keyframes fadeInPage {
-  from {
-    opacity: 0;
-    transform: translateY(15px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 .experience-section {
@@ -24,11 +12,13 @@
 }
 
 .experience-title {
+  font-family: var(--font-display, system-ui);
   font-size: clamp(2rem, 5vw, 2.5rem);
   font-weight: 700;
   text-align: center;
   margin-bottom: clamp(2rem, 4vw, 3rem);
   color: var(--foreground);
+  letter-spacing: var(--tracking-tight);
 }
 
 /* Timeline Container */
@@ -59,8 +49,8 @@
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: var(--primary);
-  box-shadow: 0 0 10px var(--primary);
+  background: var(--accent);
+  box-shadow: 0 0 12px var(--accent-glow), 0 0 4px var(--accent);
   flex-shrink: 0;
   margin-top: 8px;
 }
@@ -68,7 +58,7 @@
 .timeline-line {
   width: 2px;
   flex-grow: 1;
-  background: linear-gradient(to bottom, var(--primary), var(--secondary));
+  background: linear-gradient(to bottom, var(--accent), transparent);
   margin-top: 4px;
   min-height: calc(100% - 1rem);
   position: absolute;
@@ -81,16 +71,15 @@
 .experience-card {
   flex: 1;
   background: var(--card);
-  border: 1px solid var(--border);
+  border: 1px solid var(--card-border);
+  border-left: 2px solid var(--card-border);
   border-radius: 12px;
   padding: clamp(1rem, 3vw, 1.5rem);
   position: relative;
-  backdrop-filter: blur(10px);
   transition:
     transform 0.3s ease,
-    box-shadow 0.3s ease;
-  animation: fadeInUp 0.5s ease forwards;
-  opacity: 0;
+    box-shadow 0.3s ease,
+    border-left-color 0.3s ease;
 }
 
 .timeline-item:nth-child(1) .experience-card {
@@ -106,20 +95,10 @@
   animation-delay: 0.4s;
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 .experience-card:hover {
   transform: translateY(-2px);
   box-shadow: var(--card-hover-shadow);
+  border-left-color: var(--accent);
 }
 
 /* Card Header */
@@ -136,10 +115,12 @@
 }
 
 .position-title {
-  font-size: 1.25rem;
+  font-family: var(--font-display, system-ui);
+  font-size: 1.125rem;
   font-weight: 600;
   color: var(--foreground);
   margin: 0 0 0.25rem 0;
+  letter-spacing: var(--tracking-tight);
 }
 
 .company-info {
@@ -151,22 +132,21 @@
 
 /* Date Badge */
 .date-badge {
-  padding: 0.4rem 1rem;
-  border: 1px solid var(--card-border);
-  border-radius: 20px;
-  font-size: 0.85rem;
-  color: var(--foreground);
-  opacity: 0.9;
+  padding: 0.35rem 0.85rem;
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent);
   white-space: nowrap;
-  background: var(--muted);
+  background: transparent;
   transition: all 0.2s ease;
   cursor: default;
+  letter-spacing: 0.02em;
 }
 
 .date-badge:hover {
-  border-color: var(--primary);
-  background: var(--hover-background);
-  color: var(--primary);
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
   transform: translateY(-1px);
 }
 
@@ -201,10 +181,10 @@
   position: absolute;
   left: 0;
   top: 0.5rem;
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
   border-radius: 50%;
-  background: var(--primary);
+  background: var(--accent);
 }
 
 /* Technologies Section */
@@ -219,18 +199,21 @@
 }
 
 .tech-tag {
-  padding: 0.3rem 0.75rem;
-  background: var(--muted);
-  border: 1px solid var(--primary);
-  border-radius: 20px;
-  font-size: 0.75rem;
-  color: var(--primary);
-  font-weight: 500;
+  padding: 0.2rem 0.6rem;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--accent);
+  font-weight: 400;
+  letter-spacing: 0.02em;
   transition: all 0.2s ease;
 }
 
 .tech-tag:hover {
-  background: var(--hover-background);
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
   transform: translateY(-1px);
 }
 
