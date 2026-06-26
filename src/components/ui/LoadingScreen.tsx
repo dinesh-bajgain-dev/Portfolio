@@ -1,17 +1,7 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./LoadingScreen.css";
-
-const loadingMessages = [
-  "Compiling code...",
-  "Charging social batteries...",
-  "Brewing creativity...",
-  "Polishing pixels...",
-  "Loading awesomeness...",
-  "Crafting experiences...",
-  "Initializing magic...",
-];
 
 interface LoadingScreenProps {
   onComplete?: () => void;
@@ -22,29 +12,19 @@ export default function LoadingScreen({
   onComplete,
   minDuration = 2000,
 }: LoadingScreenProps) {
-  const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
   const [isExiting, setIsExiting] = useState(false);
   const [showLoader, setShowLoader] = useState(true);
 
   useEffect(() => {
-    // Rotate messages
-    const messageInterval = setInterval(() => {
-      setCurrentMessageIndex((prev) => (prev + 1) % loadingMessages.length);
-    }, 500);
-
-    // Minimum display duration
     const exitTimer = setTimeout(() => {
       setIsExiting(true);
       setTimeout(() => {
         setShowLoader(false);
         onComplete?.();
-      }, 600);
+      }, 700);
     }, minDuration);
 
-    return () => {
-      clearInterval(messageInterval);
-      clearTimeout(exitTimer);
-    };
+    return () => clearTimeout(exitTimer);
   }, [minDuration, onComplete]);
 
   if (!showLoader) return null;
@@ -52,24 +32,21 @@ export default function LoadingScreen({
   return (
     <div className={`loading-screen ${isExiting ? "exiting" : ""}`}>
       <div className="loading-content">
-        {/* Animated dots */}
-        <div className="loading-dots">
-          <span className="dot"></span>
-          <span className="dot"></span>
-          <span className="dot"></span>
+        {/* Progress ring */}
+        <div className="loading-ring" aria-hidden="true" />
+
+        {/* Name */}
+        <h1 className="loading-headline">Dinesh Bajgain</h1>
+
+        {/* Terminal prompt */}
+        <div className="loading-prompt" aria-label="Loading portfolio">
+          <span className="loading-prompt-text">&gt; Initializing portfolio_v2026</span>
+          <span className="loading-cursor" aria-hidden="true" />
         </div>
-
-        {/* Main headline */}
-        <h1 className="loading-headline">Great design is worth the wait</h1>
-
-        {/* Rotating messages */}
-        <p className="loading-message" key={currentMessageIndex}>
-          {loadingMessages[currentMessageIndex]}
-        </p>
       </div>
 
-      {/* Subtle background gradient animation */}
-      <div className="loading-bg-gradient"></div>
+      {/* Aurora background */}
+      <div className="loading-bg-aurora" aria-hidden="true" />
     </div>
   );
 }

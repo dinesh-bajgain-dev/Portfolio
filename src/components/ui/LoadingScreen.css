@@ -6,14 +6,13 @@
   align-items: center;
   justify-content: center;
   background: var(--background);
-  transition:
-    opacity 0.6s ease,
-    transform 0.6s ease;
+  transition: clip-path 0.7s cubic-bezier(0.7, 0, 0.3, 1);
+  clip-path: inset(0 0 0% 0);
+  overflow: hidden;
 }
 
 .loading-screen.exiting {
-  opacity: 0;
-  transform: scale(1.02);
+  clip-path: inset(0 0 100% 0);
 }
 
 .loading-content {
@@ -24,130 +23,105 @@
   text-align: center;
   padding: 2rem;
   z-index: 1;
+  gap: 1.5rem;
 }
 
-/* Animated dots */
-.loading-dots {
-  display: flex;
-  gap: 0.5rem;
-  margin-bottom: 2rem;
-}
-
-.loading-dots .dot {
-  width: 12px;
-  height: 12px;
+/* Progress ring */
+.loading-ring {
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
-  background: var(--foreground);
-  opacity: 0.6;
-  animation: dotPulse 1.4s ease-in-out infinite;
+  background: conic-gradient(
+    var(--accent) var(--progress, 0%),
+    transparent var(--progress, 0%)
+  );
+  animation: ringTrace 1.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  position: relative;
 }
 
-.loading-dots .dot:nth-child(1) {
-  animation-delay: 0s;
+/* Inner circle to create donut shape */
+.loading-ring::after {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border-radius: 50%;
+  background: var(--background);
 }
 
-.loading-dots .dot:nth-child(2) {
-  animation-delay: 0.2s;
+@property --progress {
+  syntax: "<percentage>";
+  initial-value: 0%;
+  inherits: false;
 }
 
-.loading-dots .dot:nth-child(3) {
-  animation-delay: 0.4s;
+@keyframes ringTrace {
+  0%   { --progress: 0%; }
+  100% { --progress: 95%; }
 }
 
-@keyframes dotPulse {
-  0%,
-  80%,
-  100% {
-    opacity: 0.3;
-    transform: scale(0.8);
-  }
-  40% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-/* Main headline */
+/* Headline */
 .loading-headline {
-  font-family: "Playfair Display", Georgia, serif;
-  font-size: clamp(2rem, 6vw, 4rem);
-  font-weight: 400;
-  color: var(--foreground);
-  margin: 0 0 1.5rem 0;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
-  animation: fadeInSlide 0.8s ease forwards;
-}
-
-@keyframes fadeInSlide {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Rotating messages */
-.loading-message {
-  font-size: clamp(0.9rem, 2vw, 1.1rem);
-  color: var(--text-muted);
+  font-family: var(--font-display, system-ui);
+  font-size: clamp(1.75rem, 5vw, 2.75rem);
+  font-weight: 700;
+  color: var(--text-primary);
   margin: 0;
-  min-height: 1.5em;
-  animation: messageFade 0.5s ease;
+  letter-spacing: var(--tracking-tight, -0.03em);
+  line-height: 1.1;
+  animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
 }
 
-@keyframes messageFade {
-  from {
-    opacity: 0;
-    transform: translateY(5px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Terminal prompt */
+.loading-prompt {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-mono, ui-monospace);
+  font-size: clamp(0.75rem, 1.5vw, 0.9rem);
+  color: var(--accent);
+  letter-spacing: 0.02em;
+  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
 }
 
-/* Background gradient animation */
-.loading-bg-gradient {
+.loading-prompt-text {
+  opacity: 0.85;
+}
+
+.loading-cursor {
+  display: inline-block;
+  width: 7px;
+  height: 1.1em;
+  background: var(--accent);
+  border-radius: 1px;
+  animation: cursorBlink 1s step-end infinite;
+  flex-shrink: 0;
+}
+
+/* Aurora background */
+.loading-bg-aurora {
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: radial-gradient(
-    circle at 50% 50%,
-    var(--accent) 0%,
-    transparent 50%
-  );
-  opacity: 0.05;
-  animation: gradientPulse 4s ease-in-out infinite;
+  background:
+    radial-gradient(ellipse 70% 50% at 30% 40%, var(--aurora-1, rgba(34,211,238,0.07)) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 70% at 70% 60%, var(--aurora-2, rgba(99,102,241,0.05)) 0%, transparent 55%);
+  animation: auroraShift 8s ease-in-out infinite alternate;
+  pointer-events: none;
 }
 
-@keyframes gradientPulse {
-  0%,
-  100% {
-    transform: scale(0.8);
-    opacity: 0.03;
-  }
-  50% {
-    transform: scale(1.2);
-    opacity: 0.08;
-  }
-}
-
-/* Mobile responsiveness */
+/* Mobile */
 @media (max-width: 600px) {
   .loading-content {
     padding: 1.5rem;
+    gap: 1.25rem;
   }
 
-  .loading-dots .dot {
-    width: 10px;
-    height: 10px;
+  .loading-ring {
+    width: 52px;
+    height: 52px;
   }
 
-  .loading-dots {
-    margin-bottom: 1.5rem;
+  .loading-ring::after {
+    inset: 5px;
   }
 }

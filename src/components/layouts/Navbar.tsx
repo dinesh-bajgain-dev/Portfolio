@@ -25,12 +25,23 @@ const Navbar = ({
 }: NavbarProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const navRef = useRef<HTMLElement | null>(null);
   const router = useRouter();
   const { setTheme, resolvedTheme } = useTheme();
 
   useEffect(() => {
     setMounted(true);
+
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+
+    const scrollContainer = document.querySelector(".page-content");
+    if (scrollContainer) {
+      scrollContainer.addEventListener("scroll", handleScroll, { passive: true });
+      return () => scrollContainer.removeEventListener("scroll", handleScroll);
+    }
   }, []);
 
   const toggleMenu = () => {
@@ -110,7 +121,7 @@ const Navbar = ({
     return (
       <nav
         ref={navRef}
-        className={`site-top-navbar ${className} ${isOpen ? "mobile-menu-open" : ""}`}
+        className={`site-top-navbar ${className} ${isOpen ? "mobile-menu-open" : ""} ${scrolled ? "scrolled" : ""}`}
       >
         <div className="site-navbar-inner">
           <div className="site-navbar-logo">

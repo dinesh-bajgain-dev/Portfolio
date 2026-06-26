@@ -7,7 +7,7 @@
   background:
     radial-gradient(
       circle at 20% 15%,
-      color-mix(in srgb, var(--accent-blue) 28%, transparent),
+      color-mix(in srgb, var(--accent) 28%, transparent),
       transparent 48%
     ),
     radial-gradient(
@@ -42,7 +42,8 @@
     var(--background) 94%,
     var(--hover-background) 6%
   );
-  border: 1px solid color-mix(in srgb, var(--border) 90%, var(--primary) 10%);
+  border: 1px solid var(--card-border);
+  border-top-color: var(--accent);
   border-radius: 20px;
   max-width: 920px;
   width: min(92vw, 920px);
@@ -54,6 +55,7 @@
   animation: slideUp 0.32s cubic-bezier(0.2, 0.8, 0.2, 1);
   box-shadow:
     0 28px 90px rgba(0, 0, 0, 0.35),
+    0 0 0 1px var(--card-border),
     inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
@@ -96,7 +98,7 @@
 
 .modal-close:hover {
   background: var(--hover-background);
-  border-color: color-mix(in srgb, var(--accent-blue) 55%, var(--border));
+  border-color: color-mix(in srgb, var(--accent) 55%, var(--border));
   transform: scale(1.04);
 }
 
@@ -226,7 +228,7 @@
   margin: 1rem 0;
   padding: 0.65rem 0.95rem;
   border-left: 3px solid
-    color-mix(in srgb, var(--accent-blue) 65%, var(--border));
+    color-mix(in srgb, var(--accent) 65%, var(--border));
   background: color-mix(
     in srgb,
     var(--hover-background) 75%,
@@ -268,7 +270,7 @@
 }
 
 .modal-readme-markdown a {
-  color: var(--accent-blue);
+  color: var(--accent);
   text-underline-offset: 2px;
 }
 

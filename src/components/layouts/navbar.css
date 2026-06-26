@@ -18,49 +18,61 @@
   top: 0;
   left: 0;
   width: 100%;
-  background: var(--glass-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  overflow: visible;
+  background: color-mix(in srgb, var(--background) 65%, transparent);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
   border-bottom: 1px solid var(--glass-border);
+  box-shadow: 0 1px 0 var(--glass-border), 0 4px 24px rgba(0, 0, 0, 0.08);
   z-index: 100;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.site-top-navbar.scrolled {
+  background: color-mix(in srgb, var(--background) 82%, transparent);
+  box-shadow: 0 1px 0 var(--glass-border), 0 8px 32px rgba(0, 0, 0, 0.15);
 }
 
 .site-navbar-inner {
   margin: 0 clamp(0.75rem, 3vw, 4rem);
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   gap: clamp(0.5rem, 1.5vw, 2rem);
-  padding: 0.75rem 0;
+  padding: 0.5rem 0;
   min-height: 50px;
   position: relative;
+  overflow: visible;
 }
 
 .site-navbar-logo {
   flex: 0 0 auto;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   position: relative;
   z-index: 101;
+  overflow: visible;
 }
 
-/* Logo as CSS background to hide from HTML source */
+/* Logo as CSS background — overflows the bar via negative margins, z-index keeps it on top */
 .navbar-logo-image {
   height: 12vh;
   width: 20vw;
   cursor: pointer;
   position: relative;
+  z-index: 101;
   background-image: url("/mark.png");
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: left center;
   margin-top: -1rem;
   margin-bottom: -2rem;
-  transition: transform 0.4s ease;
+  transition: transform 0.3s ease, opacity 0.2s ease;
 }
 
 .navbar-logo-image:hover {
-  transform: scale(1.2);
+  transform: scale(1.08);
+  opacity: 0.85;
 }
 
 .site-navbar-left {
@@ -84,10 +96,9 @@
 .theme-social-bar .social-separator {
   display: block !important;
   width: 1px !important;
-  height: 24px !important;
-  background-color: transparent !important;
-  border-left: 2px dashed var(--foreground) !important;
-  opacity: 0.6 !important;
+  height: 20px !important;
+  background-color: var(--glass-border) !important;
+  border: none !important;
   margin: 0 0.5rem !important;
   align-self: center !important;
 }
@@ -174,15 +185,16 @@
 }
 
 .navbar-button {
-  color: var(--foreground);
+  color: var(--accent);
   text-decoration: none;
   padding: clamp(0.3rem, 0.4vw, 0.4rem) clamp(0.5rem, 0.8vw, 0.9rem);
-  border: 1px solid var(--foreground);
+  border: 1px solid var(--accent);
   border-radius: 6px;
   transition:
-    background 0.15s ease,
-    color 0.15s ease,
-    border-color 0.15s ease;
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
   white-space: nowrap;
   font-size: clamp(0.75rem, 0.95vw, 1.1rem);
   font-weight: 500;
@@ -191,9 +203,10 @@
 }
 
 .navbar-button:hover {
-  background: var(--foreground);
-  color: var(--background);
-  border-color: var(--foreground);
+  background: var(--accent);
+  color: var(--accent-foreground);
+  border-color: var(--accent);
+  box-shadow: 0 0 16px var(--accent-glow);
 }
 
 .navbar-toggle {
@@ -360,18 +373,6 @@
     background: var(--hover-background);
   }
 
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(10px);
-    }
-
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
   .navbar-mobile-link::after {
     content: "";
     position: absolute;
@@ -396,22 +397,24 @@
     text-align: center;
     font-size: 1.05rem;
     padding: 0.9rem 1rem;
-    border: 1px solid var(--foreground);
+    border: 1px solid var(--accent);
     border-radius: 8px;
     text-decoration: none;
-    color: var(--foreground);
+    color: var(--accent);
     transition:
       background 0.2s ease,
       color 0.2s ease,
-      transform 0.2s ease;
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
     animation: fadeInUp 0.3s ease forwards;
     opacity: 0;
     margin-top: 0.35rem;
   }
 
   .navbar-mobile-button:hover {
-    background: var(--foreground);
-    color: var(--background);
+    background: var(--accent);
+    color: var(--accent-foreground);
+    box-shadow: 0 0 12px var(--accent-glow);
     transform: scale(1.02);
   }
 
@@ -462,8 +465,8 @@
   }
 
   .navbar-logo-image {
-    height: clamp(48px, 18vw, 100px);
-    width: clamp(120px, 40vw, 200px);
+    height: 44px;
+    width: clamp(120px, 35vw, 160px);
     margin-top: 0;
     margin-bottom: 0;
   }

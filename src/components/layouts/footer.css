@@ -1,8 +1,8 @@
 /* Footer Styles */
 .site-footer {
   width: 100%;
-  background: var(--card);
-  border-top: 1px solid var(--border);
+  background: var(--surface);
+  border-top: 1px solid var(--glass-border);
   padding: 1.5rem 0;
   margin-top: auto;
 }
@@ -23,8 +23,10 @@
 
 .footer-copyright p {
   margin: 0;
-  font-size: 0.875rem;
-  color: var(--primary);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
 }
 
 .footer-tagline {
@@ -76,8 +78,10 @@
 }
 
 .footer-social-link:hover {
-  color: var(--primary);
+  color: var(--accent);
   background: var(--hover-background);
+  border-color: var(--accent);
+  box-shadow: 0 0 10px var(--accent-glow);
   transform: translateY(-2px);
 }
 

@@ -45,7 +45,7 @@ const ThemeSocialBar = ({ hideOnMobileMenu = false }: ThemeSocialBarProps) => {
         className="social-icon-btn"
         aria-label="Toggle Theme"
       >
-        {resolvedTheme === "dark" ? <Sun size={35} /> : <Moon size={35} />}
+        {resolvedTheme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
       </button>
 
       {/* Separator */}
@@ -60,7 +60,7 @@ const ThemeSocialBar = ({ hideOnMobileMenu = false }: ThemeSocialBarProps) => {
           className="social-icon-link"
           aria-label="Dinesh Bajgain GitHub Profile"
         >
-          <Github size={35} />
+          <Github size={20} />
           <span className="sr-only">Dinesh Bajgain GitHub</span>
         </a>
 
@@ -71,7 +71,7 @@ const ThemeSocialBar = ({ hideOnMobileMenu = false }: ThemeSocialBarProps) => {
           className="social-icon-link"
           aria-label="Dinesh Bajgain Instagram Profile"
         >
-          <Instagram size={35} />
+          <Instagram size={20} />
           <span className="sr-only">Dinesh Bajgain Instagram</span>
         </a>
 
@@ -82,7 +82,7 @@ const ThemeSocialBar = ({ hideOnMobileMenu = false }: ThemeSocialBarProps) => {
           className="social-icon-link"
           aria-label="Dinesh Bajgain LinkedIn Profile"
         >
-          <Linkedin size={35} />
+          <Linkedin size={20} />
           <span className="sr-only">Dinesh Bajgain LinkedIn</span>
         </a>
 
@@ -93,7 +93,7 @@ const ThemeSocialBar = ({ hideOnMobileMenu = false }: ThemeSocialBarProps) => {
           className="social-icon-link"
           aria-label="Dinesh Bajgain Facebook Profile"
         >
-          <Facebook size={35} />
+          <Facebook size={20} />
           <span className="sr-only">Dinesh Bajgain Facebook</span>
         </a>
 
@@ -104,7 +104,7 @@ const ThemeSocialBar = ({ hideOnMobileMenu = false }: ThemeSocialBarProps) => {
           className="social-icon-link"
           aria-label="Dinesh Bajgain Twitter Profile"
         >
-          <Twitter size={35} />
+          <Twitter size={20} />
           <span className="sr-only">Dinesh Bajgain Twitter</span>
         </a>
       </div>
