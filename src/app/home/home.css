@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap");
-
 /* ========== SPA MAIN CONTAINER ========== */
 .spa-main {
   width: 100%;
@@ -16,31 +14,20 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  animation: fadeInSection 0.6s ease forwards;
-}
-
-@keyframes fadeInSection {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 .section-content {
   max-width: 1200px;
   width: 100%;
-  /* margin: 0 auto; */
 }
 
 .section-heading {
+  font-family: var(--font-display, system-ui);
   font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 700;
   color: var(--primary);
   margin: 0 0 clamp(2rem, 4vw, 3rem) 0;
+  letter-spacing: var(--tracking-tight);
 }
 
 .section-heading.center {
@@ -73,250 +60,308 @@
   transform: translateY(10px);
 }
 
-/* Hero Section Container - Global Grid */
+/* ========== HERO SECTION ========== */
 .hero-section {
   position: relative;
   min-height: 100vh;
-  padding: 2rem;
   display: grid;
-  gap: 2rem;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
   overflow: hidden;
+  padding: 0;
 }
 
-/* Animated subtle gradient background and centered minimal hero */
+/* Aurora background */
 .hero-section::before {
   content: "";
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: linear-gradient(
-    270deg,
-    rgba(255, 255, 255, 0.02),
-    rgba(0, 0, 0, 0.02),
-    rgba(255, 255, 255, 0.02)
-  );
-  background-size: 600% 600%;
-  animation: gradientBG 12s ease infinite;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 50%, var(--aurora-1) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 80% 20%, var(--aurora-2) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 60% at 50% 85%, var(--aurora-3) 0%, transparent 50%);
+  animation: auroraShift 20s ease-in-out infinite alternate;
   pointer-events: none;
-  opacity: 0.12;
 }
 
-@keyframes gradientBG {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-.hero-intro .minimal {
+/* ── Hero left panel ── */
+.hero-left {
   position: relative;
-  z-index: 50;
+  z-index: 2;
+  padding: clamp(5rem, 8vw, 8rem) clamp(2rem, 5vw, 5rem) clamp(3rem, 5vw, 5rem);
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  height: auto;
-  text-align: left;
-  padding: 1.5rem;
+  gap: 1.5rem;
 }
 
-.hero-title {
-  font-family: "Playfair Display", serif;
-  font-size: clamp(2.5rem, 8vw, 6rem);
-  font-weight: 400;
-  line-height: 1;
-  margin-bottom: 0.5rem;
-  white-space: nowrap;
-  background: linear-gradient(
-    90deg,
-    var(--primary),
-    var(--accent),
-    var(--foreground)
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent;
-  animation: fadeInUp 0.8s ease both;
+/* Role badge */
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.85rem;
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+  width: fit-content;
+  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(6px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.hero-accent {
-  width: 72px;
+.hero-badge-dot {
+  width: 6px;
   height: 6px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, var(--primary), transparent);
-  opacity: 0.9;
-  animation: accentPulse 2.2s ease-in-out infinite;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: accentPulse 2s ease-in-out infinite;
+  flex-shrink: 0;
+  box-shadow: 0 0 6px var(--accent-glow);
 }
 
+/* Name — the monument */
+.hero-title {
+  font-family: var(--font-display, system-ui);
+  font-size: clamp(3.5rem, 8vw, 7rem);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: var(--tracking-tight);
+  color: var(--text-primary);
+  margin: 0;
+}
+
+/* Each word masked so the reveal slides up inside the mask */
+.hero-title-word {
+  display: block;
+  overflow: hidden;
+}
+
+.hero-title-line {
+  display: block;
+  animation: charReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.hero-title-word:nth-child(1) .hero-title-line {
+  animation-delay: 0.15s;
+}
+
+.hero-title-word:nth-child(2) .hero-title-line {
+  animation-delay: 0.28s;
+  color: var(--accent);
+}
+
+/* Divider */
+.hero-divider {
+  display: flex;
+  align-items: center;
+  animation: fadeInUp 0.6s ease 0.45s both;
+}
+
+.hero-divider-line {
+  display: block;
+  height: 2px;
+  width: 80px;
+  background: linear-gradient(90deg, var(--accent), transparent);
+  border-radius: 1px;
+}
+
+/* Specialties */
+.hero-specialties {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+  margin: 0;
+  animation: fadeInUp 0.6s ease 0.5s both;
+}
+
+.hero-specialty {
+  font-family: var(--font-mono);
+  font-size: clamp(0.78rem, 1.2vw, 0.92rem);
+  color: var(--text-secondary);
+  letter-spacing: 0.02em;
+}
+
+.hero-dot {
+  color: var(--accent);
+  opacity: 0.5;
+  font-size: 0.9em;
+}
+
+/* CTAs */
+.hero-cta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  animation: fadeInUp 0.6s ease 0.6s both;
+}
+
+.hero-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  background: var(--accent);
+  color: var(--accent-foreground);
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  letter-spacing: 0.01em;
+}
+
+.hero-btn-primary:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+  box-shadow: 0 0 28px var(--accent-glow), 0 4px 16px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+.hero-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border-strong);
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.hero-btn-secondary:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-2px);
+}
+
+/* Availability */
+.hero-availability {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  animation: fadeInUp 0.6s ease 0.75s both;
+}
+
+.availability-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
+  animation: accentPulse 2.5s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+/* Portrait container */
+.hero-portrait-container {
+  position: relative;
+  height: 100vh;
+  z-index: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-portrait {
+  height: 95%;
+  width: auto;
+  object-fit: contain;
+  object-position: center bottom;
+  filter: none;
+  opacity: 1;
+  mask-image: linear-gradient(to top, black 80%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to top, black 80%, transparent 100%);
+  animation: portraitReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+}
+
+/* Accent pulse — used by badge dot */
 @keyframes accentPulse {
-  0% {
-    transform: scaleX(0.7);
-    opacity: 0.6;
-  }
-  50% {
-    transform: scaleX(1);
-    opacity: 1;
-  }
-  100% {
-    transform: scaleX(0.7);
-    opacity: 0.6;
+  0%   { opacity: 0.6; box-shadow: 0 0 4px var(--accent-glow); }
+  50%  { opacity: 1;   box-shadow: 0 0 10px var(--accent-glow); }
+  100% { opacity: 0.6; box-shadow: 0 0 4px var(--accent-glow); }
+}
+
+/* ── Responsive ── */
+@media (min-width: 1024px) {
+  .hero-left {
+    padding-right: 2rem;
   }
 }
 
-/* On very large screens, add more padding */
-@media (min-width: 1024px) {
+@media (max-width: 1024px) {
   .hero-section {
-    padding: 3rem 4rem;
-    padding-right: 0;
-    gap: 4rem;
+    grid-template-columns: 1fr 1fr;
   }
 
   .hero-title {
-    white-space: nowrap;
+    font-size: clamp(3rem, 7vw, 5rem);
   }
 }
 
-/* Left Content: Name & Intro */
-.hero-intro {
-  position: relative;
-  color: var(--foreground);
-  z-index: 10;
-  max-width: 100%;
-}
+@media (max-width: 768px) {
+  .hero-section {
+    grid-template-columns: 1fr;
+    min-height: 100dvh;
+    position: relative;
+  }
 
-.hero-title {
-  font-family: "Playfair Display", serif;
-  /* Responsive font size */
-  font-size: clamp(2.5rem, 8vw, 6rem);
-  font-weight: 400;
-  line-height: 2;
-  display: inline-block;
-  white-space: normal;
-}
+  .hero-left {
+    padding: 6rem 1.75rem 2rem;
+    z-index: 3;
+    gap: 1.25rem;
+  }
 
-.hero-title span {
-  display: inline;
-}
-
-/* Center Bottom Portrait */
-.hero-portrait-container {
-  position: absolute;
-  /* positioned container so children can align to portrait */
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: auto;
-  height: 75vh;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  z-index: 1;
-  pointer-events: none;
-}
-
-/* .hero-mark {
-  position: relative;
-  bottom: 15vh;
-  right: -10%;
-  transform: translateX(calc(-50% + 7rem)) rotate(-70deg);
-  width: auto;
-  height: 6vh;
-  opacity: 0.7;
-  pointer-events: none;
-  z-index: 1;
-} */
-
-.hero-portrait {
-  height: 100%;
-  width: auto;
-  object-fit: contain;
-  filter: grayscale(100%);
-  /* Classic B&W look */
-  opacity: 0.9;
-  mask-image: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 1) 80%,
-    rgba(0, 0, 0, 0) 100%
-  );
-  -webkit-mask-image: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 1) 80%,
-    rgba(0, 0, 0, 0) 100%
-  );
-  /* Fades top slightly if needed */
-}
-
-.hero-title span {
-  display: inline;
-  /* Keep in one line */
-}
-
-/* Force white left panel for social links on small screens <= 769px */
-/* @media (max-width: 769px) {
-  .hero-mark {
+  .hero-portrait-container {
     position: absolute;
-    bottom: 15vh;
-    right: 72%;
-    left: auto;
-    transform: rotate(-70deg);
-    transform-origin: center center;
-    height: 7vh;
-    opacity: 0.7;
-  }
-} */
-
-@media (max-width: 400px) {
-  .hero-portrait-container {
-    height: auto;
-    right: -8rem;
-  }
-  /* .hero-mark {
-    bottom: 12vh;
-    right: 72%;
-    height: 6vh;
-  } */
-}
-
-@media (max-width: 700px) {
-  .hero-intro .minimal {
-    padding-left: 2rem;
-  }
-}
-
-/* Mobile layout: push portrait to the far right so hands go off-screen */
-@media (max-width: 1024px) {
-  .hero-portrait-container {
-    left: auto;
-    right: -4.5rem; /* nudge container right so hands are off-screen */
-    transform: none;
-    height: auto;
-    width: auto;
-    justify-content: flex-end;
-    align-items: flex-end;
+    right: -3rem;
+    bottom: 0;
+    height: 72vh;
+    width: 55%;
+    z-index: 1;
     pointer-events: none;
+    justify-content: flex-end;
   }
 
   .hero-portrait {
     height: 100%;
-    max-height: 65vh;
-    object-fit: cover;
-    object-position: right bottom; /* ensure face remains visible */
+    object-position: right bottom;
+  }
+
+  .hero-title {
+    font-size: clamp(2.75rem, 11vw, 4.5rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-left {
+    padding: 5.5rem 1.25rem 2rem;
+  }
+
+  .hero-portrait-container {
+    right: -4rem;
+    height: 60vh;
+    width: 65%;
+  }
+
+  .hero-cta {
+    flex-direction: column;
+  }
+
+  .hero-btn-primary,
+  .hero-btn-secondary {
+    width: 100%;
+    justify-content: center;
   }
 }
