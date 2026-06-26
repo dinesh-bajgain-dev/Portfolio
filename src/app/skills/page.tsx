@@ -67,7 +67,12 @@ export default function Skills() {
 
           <div className="skills-grid">
             {Object.entries(skills).map(([category, items], index) => (
-              <div key={index} className="skill-category-card">
+              <div
+                key={index}
+                className="skill-category-card"
+                data-reveal
+                style={{ transitionDelay: `${index * 0.08}s` }}
+              >
                 <div className="category-header">
                   <h2 className="category-title">{category}</h2>
                   <div className="category-accent"></div>
