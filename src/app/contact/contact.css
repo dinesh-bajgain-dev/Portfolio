@@ -5,18 +5,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  animation: fadeInPage 0.5s ease forwards;
-}
-
-@keyframes fadeInPage {
-  from {
-    opacity: 0;
-    transform: translateY(15px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 .contact-section {
@@ -35,37 +23,27 @@
 .contact-header {
   text-align: center;
   margin-bottom: 2.5rem;
-  animation: fadeInUp 0.5s ease 0.1s forwards;
-  opacity: 0;
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 .contact-greeting {
-  font-size: clamp(12px, 2vw, 14px);
+  font-family: var(--font-mono);
+  font-size: clamp(11px, 1.5vw, 13px);
   color: var(--accent);
   display: block;
   margin-bottom: 12px;
-  letter-spacing: 1.5px;
+  letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .contact-title {
+  font-family: var(--font-display, system-ui);
   font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 700;
   color: var(--primary);
   margin: 0 0 16px 0;
   line-height: 1.2;
+  letter-spacing: var(--tracking-tight);
 }
 
 .contact-subtitle {
@@ -87,18 +65,19 @@
 
 /* Form Wrapper */
 .contact-form-wrapper {
-  background: var(--card);
-  border: 1px solid var(--border);
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--card-border);
   border-radius: 16px;
   padding: clamp(1.5rem, 3vw, 2.5rem);
-  animation: fadeInUp 0.5s ease 0.15s forwards;
-  opacity: 0;
   box-shadow: var(--shadow);
   transition: all 0.3s ease;
 }
 
 .contact-form-wrapper:hover {
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--card-hover-shadow);
+  border-color: var(--glass-border);
   transform: translateY(-2px);
 }
 
@@ -148,7 +127,7 @@
 .form-group textarea:focus {
   outline: none;
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px var(--glass-border);
+  box-shadow: 0 0 0 3px var(--accent-glow);
   background: var(--card);
 }
 
@@ -166,9 +145,9 @@
   padding: 1rem 2rem;
   font-size: 15px;
   font-weight: 600;
-  background: var(--primary);
-  color: var(--primary-foreground);
-  border: none;
+  background: var(--accent);
+  color: var(--accent-foreground);
+  border: 1px solid var(--accent);
   border-radius: 10px;
   cursor: pointer;
   transition: all 0.25s ease;
@@ -176,9 +155,10 @@
 }
 
 .btn-submit:hover {
-  opacity: 0.9;
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 24px var(--accent-glow), 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 /* Contact Info */
@@ -186,8 +166,6 @@
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  animation: fadeInUp 0.5s ease 0.2s forwards;
-  opacity: 0;
 }
 
 .info-card {
@@ -264,17 +242,16 @@
   height: 48px;
   border: 1px solid var(--border);
   border-radius: 12px;
-  color: var(--foreground);
+  color: var(--text-secondary);
   background: var(--card);
   transition: all 0.25s ease;
-  box-shadow: var(--shadow);
 }
 
 .social-link:hover {
-  color: var(--primary);
+  color: var(--accent);
   border-color: var(--accent);
+  box-shadow: 0 0 12px var(--accent-glow);
   transform: translateY(-3px);
-  box-shadow: var(--shadow-lg);
 }
 
 /* Response Note */

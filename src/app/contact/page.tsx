@@ -63,7 +63,7 @@ export default function ContactPage() {
 
           <div className="contact-content">
             {/* Contact Form */}
-            <div className="contact-form-wrapper">
+            <div className="contact-form-wrapper" data-reveal="fade-right">
               <form
                 className="contact-form"
                 action="https://formspree.io/f/mgooyajl"
@@ -118,7 +118,7 @@ export default function ContactPage() {
             </div>
 
             {/* Contact Info */}
-            <div className="contact-info">
+            <div className="contact-info" data-reveal="fade-left" style={{ transitionDelay: "0.15s" }}>
               <a
                 href="mailto:dinesh.bazgain@gmail.com"
                 className="info-card clickable"
