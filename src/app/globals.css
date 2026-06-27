@@ -85,7 +85,8 @@
   --info-border: #93c5fd;
 
   /* ── Typography scale ── */
-  --font-mono:          ui-monospace, "Cascadia Code", "Fira Code", "Consolas", monospace;
+  /* --font-display is set to JetBrains Mono via next/font variable on <html> */
+  --font-mono:          var(--font-display), "JetBrains Mono", ui-monospace, monospace;
   --text-display:       clamp(3rem, 8vw, 6rem);
   --text-h1:            clamp(2rem, 4vw, 3rem);
   --text-h2:            clamp(1.5rem, 2.5vw, 2rem);
@@ -235,9 +236,13 @@ body {
   flex-direction: column;
   background-color: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), system-ui, sans-serif;
+  /* JetBrains Mono everywhere — code-editor / AI-engineer aesthetic */
+  font-family: var(--font-display), "JetBrains Mono", ui-monospace, monospace;
   font-size: var(--text-body);
-  line-height: 1.7;
+  line-height: 1.72;
+  /* Enable programming ligatures (fi, fl, ->, =>, etc.) */
+  font-feature-settings: "liga" 1, "calt" 1, "kern" 1;
+  font-variant-ligatures: common-ligatures contextual;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   transition:
