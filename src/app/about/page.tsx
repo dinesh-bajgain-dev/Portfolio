@@ -88,6 +88,9 @@ export default function AboutPage() {
           <div className="story-content">
             <p className="story-text">{about.bio}</p>
             <p className="story-text">{about.detailedBio}</p>
+            {about.paragraphs?.map((p, i) => (
+              <p key={i} className="story-text">{p}</p>
+            ))}
           </div>
         </div>
       </section>
