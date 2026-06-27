@@ -1,16 +1,15 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
+import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import Navbar from "@/components/layouts/Navbar";
 import RootLoadingWrapper from "@/components/ui/RootLoadingWrapper";
 import seoMetadata from "@/data/seometadata.json";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
-const spaceGrotesk = Space_Grotesk({
+const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-display",
-  weight: ["400", "500", "600", "700"],
+  weight: ["300", "400", "500", "600", "700"],
   display: "swap",
   preload: false,
 });
@@ -187,7 +186,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${inter.variable} ${spaceGrotesk.variable} antialiased`}>
+      <body className={`${jetbrainsMono.variable} antialiased`}>
         <a href="#main-content" className="skip-link">
           Skip to content
         </a>
