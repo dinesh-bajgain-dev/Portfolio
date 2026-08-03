@@ -55,5 +55,21 @@
     "external": null,
     "codeUrl": "https://github.com/dinesh-bajgain-dev/Currency-Converter",
     "liveUrl": "https://dinesh-bajgain-dev.github.io/Currency-Converter/"
+  },
+  {
+    "title": "Bajgain Krishi Farm",
+    "slug": "bajgain-krishi-farm",
+    "description": "A platform for buying and selling agricultural products.",
+    "subTitle": "A modern agricultural marketplace built with React and Node.js",
+    "features": [
+      "Product listings",
+      "User authentication",
+      "Search and filter options",
+      "Responsive design"
+    ],
+    "tags": ["React", "Node.js", "Express", "postgreSQL"],
+    "external": null,
+    "codeUrl": "https://github.com/dinesh-bajgain-dev/BajgainKrishiFarm",
+    "liveUrl": "https://bajgainkrishifarm.com.np/"
   }
 ]
