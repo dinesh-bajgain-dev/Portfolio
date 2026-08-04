@@ -64,7 +64,6 @@
     "features": [
       "Product listings",
       "User authentication",
-      "Search and filter options",
       "Responsive design"
     ],
     "tags": ["React", "Node.js", "Express", "postgreSQL"],
